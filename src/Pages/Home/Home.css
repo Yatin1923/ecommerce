@@ -1,0 +1,182 @@
+.Categories{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+}
+.Categories-heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.Categories-heading h1{
+    font-size: 4rem;
+    font-weight: 500;
+}
+.Categories-heading p{
+    width: 50%;
+    padding-left: 15vw;
+    opacity: 0.6;
+}
+.Categories{
+    margin: 5vh 0;
+}
+.Categories-flex{
+    height: 80%;
+    display: flex;
+    gap: 2vw;
+}
+.Categories-left{
+    height: 100%;
+    width: 50%;
+}
+.Categories-right{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+.Categories-left .Living-room img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.Bedroom img,.Kitchen img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+.Categories-left .Living-room{
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+    padding: 4vh 3vw;
+    background-image: url('/public/assets/images/Living-room-chair.svg');
+    background-size: cover;
+    background-position: center;
+}
+.Categories-right .Bedroom{
+    border-radius: 1rem;
+    width: 100%;
+    height: 50%;
+    padding: 4vh 3vw;
+    background-image: url('/public/assets/images/Bedroom-side-table.svg'); 
+    
+}
+.Kitchen{
+    border-radius: 1rem;
+    width: 100%;
+    height: 50%;
+    padding: 4vh 3vw;
+    background-image: url('/public/assets/images/Toaster.svg'); 
+}
+.Categories-left .Living-room h1,.Bedroom h1,.Kitchen h1{
+    font-weight: 400;
+}
+.New-Arrivals{
+    margin: 5vh 0;
+}
+.New-Arrivals-heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4vh;
+}
+.react-multi-carousel-track {
+    gap: 1vw;
+}
+.react-multi-carousel-list{
+    overflow: visible;
+}
+.item-details{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+}
+.oldprice{
+    opacity: 0.55;
+    margin-left: 10px;
+}
+.eccards{
+    margin: 5vh 0;
+    margin-top: 20vh;
+    height: 30vh;
+    display: flex;
+    gap: 10px;
+}
+.eccard{
+    width: 100%;
+    height: 100%;
+    padding: 5vh 2vw;
+    border-radius: 5px;
+    background-color: #f3f5f7;
+}
+.eccard p{
+    opacity: 0.55;
+}
+.eccard img{
+    margin-bottom: 2vh;
+}
+.sale{
+    margin: 10vh 0;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.sale-left{
+    width: 50%;
+    height: 100%;
+}
+.sale-left img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.sale-right{
+    width: 50%;
+    height: 100%;
+    padding: 0 4vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f3f5f7 ;
+}
+.sale-right p:first-child{
+    color: #377DFF;
+    font-weight: 700;
+    font-size: large;
+}
+.sale-right h1{
+    margin-bottom: 3vh;
+}
+.Articles{
+    margin: 10vh 0;
+}
+.Articles-heading{
+    display: flex;
+    margin-bottom: 5vh;
+    justify-content: space-between;
+    align-items: center;
+}
+.Articles-content{
+    display: flex;
+    gap: 1vw;
+    justify-content: space-between;
+}
+.new-article-item{
+    width: 100%;
+    height: 100%;
+}
+.article-img-div{
+    width: 100%;
+    height: 100%;
+}
+.article-img-div img{
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

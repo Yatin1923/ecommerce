@@ -1,0 +1,19 @@
+.Newsletter{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+    padding: 15vh;
+    text-align: center;
+    background-size: cover ;
+    background-image: url('/public/assets/images/Newsletter-bg.svg');
+}
+.subscribe-form{
+    width: 50%;
+    display: flex;
+    gap: 10px;
+}
+.email-form{
+    width: 80%;
+}

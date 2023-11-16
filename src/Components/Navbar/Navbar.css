@@ -1,0 +1,43 @@
+.ecnavbar{
+    background-color: #fff;
+    z-index: 1001;
+    width: 100%;
+    position: fixed !important;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.3s ease-in-out;
+}
+.navButtons{
+    height: 100%;
+    display: flex;
+    gap: 1rem;
+}
+.navBtn{
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    padding: 0 1vw !important;
+    transition: 0.2s ease-in !important;
+    display: flex;
+    text-decoration: none;
+    color: #000;
+}
+a.active{
+    opacity: 1 !important;
+}
+.sticky {
+    position: fixed;
+    height: 10vh !important;
+    transition: 0.3s ease-in-out;
+}
+.heightAdj{
+    height: 0vh;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+  }
+  .nav-shadow{
+    box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.47);
+  }

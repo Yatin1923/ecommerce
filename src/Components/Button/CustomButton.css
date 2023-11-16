@@ -1,0 +1,39 @@
+.customButton {
+  color: #000;
+  font-family: inherit;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: none;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+}
+
+.customButton:focus,
+.customButton:hover {
+  color: #000;
+}
+
+.customButton:hover:after {
+  width: 100%;
+  left: 0%;
+}
+
+.customButton:after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 0.5px;
+  background-color: #000;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
+}
+.svgIcon{
+  width: 0.8em !important;
+  height: 0.8em !important;
+}

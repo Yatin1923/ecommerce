@@ -1,0 +1,49 @@
+.main{
+    background-color: #141718;
+    padding: 10vh 0;
+    height: 40vh;
+}
+.footer{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10vh;
+}
+.logo{
+    width: 50%;
+    display: flex;
+    gap: 2vw;
+    color: #fff;
+    justify-content: start;
+    align-items: center;
+}
+.logo p, .logo h2{
+   margin: 0 ;
+}
+.logo p{
+    font-weight: 200
+}
+.buttons a{
+    color: #fff !important;
+    text-decoration: none;
+}
+.buttons{
+    width: 50%;
+    display: flex;
+    justify-content: end;
+    gap: 1vw;
+}
+.horizontalLine{
+    color: white;
+    width: 100%;
+}
+.copyright{
+    display: flex;
+    color: #fff;
+    gap: 1vw;
+    font-weight:100;
+    opacity: 0.55;
+}
+.social-handlers{
+    display: flex;
+    gap: 1vw;
+}
