@@ -30,13 +30,13 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 export default function Navbar(){
  let [isSticky, setSticky] = React.useState(false);
-let [isOOV, setHeight] = React.useState(false);
+let [isScrollDown, setHeight] = React.useState(false);
+let lastScrollTop =0;
 React.useEffect(()=>{
     const handleScroll = () => {
-        const isScrollingDown = window.scrollY > window.innerHeight * 1.5;
-        const isScrollHeight = window.scrollY > window.innerHeight/10;
-        setHeight(isScrollHeight)
-         setSticky(isScrollingDown)
+        const isScrollingDown =window.scrollY>lastScrollTop;
+        lastScrollTop = window.scrollY;
+        setHeight(isScrollingDown)
        
     };
     window.addEventListener('scroll', handleScroll);
@@ -48,7 +48,7 @@ React.useEffect(()=>{
     return(
         <div className='container'>
 
-          <div className={`ecnavbar container ${isOOV&&!isSticky?'heightAdj':''} ${isSticky?'nav-shadow':''}`}>
+          <div className={`ecnavbar container ${isScrollDown?'heightAdj':''}`}>
             <div className='eclogo'>
               <h2>3legant</h2>
             </div>

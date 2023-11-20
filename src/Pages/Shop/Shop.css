@@ -1,0 +1,30 @@
+.shop-heading{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/public/assets/images/Shop-heading-bg.svg');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+}
+.shop-heading h1{
+    font-size: 4em;
+}
+.shop-heading p{
+    font-size: 1.5em;
+}
+.shop-items{
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+}
+.shop-filter{
+    width: 50%;
+    margin-top: 10vh;
+    display: flex;
+    gap: 1em;
+}
+.show-more{
+    text-align: center;
+}
