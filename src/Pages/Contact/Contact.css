@@ -37,10 +37,21 @@
     text-align: center;
 }
 .contact-cards{
+    margin: 5vh 0;
     display: flex;
     justify-content: space-around;
 }
 .contact-card{
     background-color: #F3F5F7;
     padding: 2vw;
+}
+.contact-card img{
+    margin-bottom: 2vh;
+}
+.contact-card h5{
+    font-weight: 750;
+    color: #6C7275;
+}
+.contact-card strong{
+    color: #333536;
 }

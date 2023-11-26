@@ -10,7 +10,7 @@ export default function Contact(){
        
         <div className="container">
             <Transitions>
-                <div className='contact-heading'>
+                <div className='page-heading'>
                     <h1>We believe in sustainable decor. <br></br> We’re passionate about life at home.</h1>
                     <p>Our features timeless furniture, with natural fabrics, curved lines, plenty of mirrors and classic design, which can be incorporated into any decor project. 
                     The pieces enchant for their sobriety, to last for generations, faithful to the shapes of each period, with a touch of the present</p>
@@ -36,18 +36,18 @@ export default function Contact(){
                         <div className='contact-cards'>
                             <div className='contact-card'>
                             <img src='assets/icons/store.svg'></img>
-                                <h3>ADDRESS</h3>
-                                <span>234 Hai Trieu, Ho Chi Minh City, Viet Nam</span>
+                                <h5>ADDRESS</h5>
+                                <strong>234 Hai Trieu, Ho Chi Minh City, Viet Nam</strong>
                             </div>
                             <div className='contact-card'>
                                 <img src='assets/icons/call.svg'></img>
-                                <h3>CONTACT US</h3>
-                                <span>234 Hai Trieu, Ho Chi Minh City, Viet Nam</span>
+                                <h5>CONTACT US</h5>
+                                <strong>234 Hai Trieu, Ho Chi Minh City, Viet Nam</strong>
                             </div>
                             <div className='contact-card'>
                                 <img src='assets/icons/mail.svg'></img>
-                                <h3>EMAIL</h3>
-                                <span>234 Hai Trieu, Ho Chi Minh City, Viet Nam</span>
+                                <h5>EMAIL</h5>
+                                <strong>234 Hai Trieu, Ho Chi Minh City, Viet Nam</strong>
                             </div>
                     </div>
                 </div>
