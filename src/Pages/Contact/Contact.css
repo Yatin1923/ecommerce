@@ -1,4 +1,6 @@
-
+.page-heading{
+    margin-top: 20vh;
+}
 .about{
     margin: 10vh 0;
     height: 70vh;
@@ -39,7 +41,7 @@
 .contact-cards{
     margin: 5vh 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .contact-card{
     background-color: #F3F5F7;
@@ -54,4 +56,15 @@
 }
 .contact-card strong{
     color: #333536;
+}
+.submit-form{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    text-align: left;
+}
+.submit-button{
+    margin-top: 4vh !important;
+    width: fit-content;
 }

@@ -2,10 +2,64 @@ import { useEffect } from 'react';
 import Transitions from '../../Components/Transition/Transition'
 import './Contact.css'
 import CustomButton from '../../Components/Button/CustomButton';
+import TextField from '@mui/material/TextField';
+import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
+import { styled } from '@mui/system';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+
+
 export default function Contact(){
     useEffect(()=>{
         window.scrollTo(0,0);
     },[]);
+    const theme1 = createTheme({
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: {
+                borderColor: '#000',
+              },
+            },
+          },
+        },
+      });
+    const theme = createTheme({
+        
+        palette: {
+          primary: {
+            main: '#000',
+
+          },
+        },
+      });
+      const Textarea = styled(BaseTextareaAutosize)(
+        ({ theme }) => `
+        font-family: IBM Plex Sans, sans-serif;
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.5;
+        padding: 8px 12px;
+        border-radius: 8px;
+        color: #1C2025;
+        border: 1px solid #1C2025;
+        box-shadow: 0px 2px 2px #F3F6F9;
+    
+        &:hover {
+          border-color: #B0B8C4;
+        }
+    
+        &:focus {
+          border-color: #B0B8C4;
+          box-shadow: 0 0 0 3px #DAE2ED;
+        }
+    
+        // firefox
+        &:focus-visible {
+          outline: 0;
+        }
+      `,
+      );
     return(
        
         <div className="container">
@@ -49,7 +103,18 @@ export default function Contact(){
                                 <h5>EMAIL</h5>
                                 <strong>234 Hai Trieu, Ho Chi Minh City, Viet Nam</strong>
                             </div>
-                    </div>
+                        </div>
+                        <form className='submit-form'>
+                            <label>FULL NAME</label>
+                            <TextField id="outlined-basic" label="Full name" variant="outlined" className='input-field' />
+                            <label>EMAIL ADDRESS</label>
+                            <TextField id="outlined-basic" label="Email Address" variant="outlined" />
+                            <label>MESSAGE</label>
+                            <Textarea placeholder='Message' minRows={5} />
+                            <ThemeProvider theme={theme}>
+                                <Button variant="contained" className="submit-button" type='submit'> Send Message</Button>
+                            </ThemeProvider>
+                        </form>
                 </div>
             </Transitions>
         </div>
