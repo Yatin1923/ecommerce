@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 
 export default function Contact(){
     useEffect(()=>{
-        window.scrollTo(0,0);
+        window.scrollTo({top:0,behavior:'instant'});
     },[]);
     const theme1 = createTheme({
         components: {

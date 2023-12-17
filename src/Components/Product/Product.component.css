@@ -1,0 +1,92 @@
+.product-details{
+    display: flex;
+    gap: 5vw;
+    height: 80vh;
+}
+.product-images{
+    height: 100%;   
+    display: flex;
+    flex-direction: column;
+    gap: 2vh; 
+    .main-image{
+        height: 75%;
+    }
+}
+.placeHolders {
+    display: flex;
+    gap: 1vw;
+    height: 18%;
+    width: 100%;
+    justify-content: space-between;
+}
+.product-content{
+}
+.product-price{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+.text-color{
+    color: #6C7275;
+}
+hr{
+    border-color: grey !important;
+}
+.countdown-timer{
+    display: flex;
+    gap: 1vw;
+}
+.counter-unit{
+    display: flex;
+    flex-direction: column;    
+    color: #6C7275;
+}
+.counter{
+    background-color: #f3f5f7;
+    color: black;
+    padding: 1vh 1vw;
+    font-weight: 600;
+    font-size: 2.5rem;
+    border-radius: 0.3rem;
+    min-width: 4vw;
+    text-align: center;
+}
+.action-buttons{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+.bottom-buttons{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+.product-quantity{
+    display: flex;
+    gap: 1vw;
+    align-items: center;
+    background-color: #f3f5f7;
+    border-radius: 0.3rem;
+    padding: 1vh 1vw;
+}
+.add-to-wishlist{
+    width: 100%;
+}
+.wishlist-button{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    gap: 0.5vw;
+}
+.quantity-btns{
+    cursor: pointer;
+}
+.quantity-btns:focus{
+    cursor: pointer;
+    opacity: 0.55 !important;
+}
+.cart-button{
+    width: 100%;
+}

@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import { Link } from 'react-router-dom';
 
 export default function ItemCard(props){
     const theme = createTheme({
@@ -14,8 +15,9 @@ export default function ItemCard(props){
         },
       });
     return(
-        <div className="item">
-        <div>
+        <Link to='/products' className="item-link">
+        <div className="item" >
+        <div >
             <div className='img-div '>
                 <img src={props.image} alt='image test' />
                 <div className='labels'>
@@ -42,5 +44,7 @@ export default function ItemCard(props){
             </div>
         </div>
     </div>
+    </Link>
+
     )
 }

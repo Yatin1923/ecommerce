@@ -1,19 +1,18 @@
 import { useEffect } from "react";
 import Transitions from "../../Components/Transition/Transition";
+// import image from "public/assets/images/black-table.svg";
+import Product_component from "../../Components/Product/Product.component";
 import './Products.css';
+import Reviews_component from "../../Components/Reviews/Reviews.component";
 export default function Products(){
     useEffect(()=>{
-        window.scrollTo(0,0);
+        window.scrollTo({top:0,behavior:'instant'});
     },[]);
     return (
         <div className="container"> 
         <Transitions>
-            <div className="product-details">
-                <div className="product-image">
-                    <img src="src/assets/images/Table-img.png"></img>
-                </div>
-                <h1>Tray Table</h1>
-            </div>
+            <Product_component></Product_component>
+            <Reviews_component></Reviews_component>
         </Transitions>
         </div>
     )
