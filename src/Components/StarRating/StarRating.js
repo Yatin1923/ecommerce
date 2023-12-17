@@ -9,7 +9,7 @@ const StarRating = ({ value }) => {
       value={value}
       getLabelText={(value) => `${value} Star${value !== 1 ? 's' : ''}`}
       precision={0.1}
-      readOnly = {true}
+      readOnly = {value?true:false}
       emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
     />
   );

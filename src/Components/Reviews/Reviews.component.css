@@ -3,6 +3,7 @@
 }
 .review-button{
     border-radius: 2rem !important;
+    width: 20%;
 }
 .review-textarea{
     display: flex;
@@ -11,5 +12,24 @@
     margin: 2vh 0;
 }
 .review-message{
+    width: 100%;
+}
+.product-rating{
+    text-align: center;
     width: 75%;
+}
+.product-questions{
+    /* box-shadow: none !important; */
+    margin: 2vh 0;
+    background-color: #fafafa !important;
+    border: none !important;
+}
+.reviews{
+    padding: 4vh 0;
+}
+.actual-reviews{
+    margin: 5vh 0;
+}
+.review-answers{
+    border-top: 1px solid #e5e5e5 !important;
 }

@@ -8,6 +8,8 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import RemoveIcon from '@mui/icons-material/Remove';
+import Typography from '@mui/material/Typography';
+
 export default function Product_component(){
     
     const [quantity,setQuantity] = useState(1);
@@ -84,12 +86,12 @@ export default function Product_component(){
                             </div>
                             <div className="add-to-wishlist">
                                 <ThemeProvider theme={theme}>
-                                    <Button variant="outlined" className="wishlist-button" ><FavoriteBorderIcon fontSize="small"></FavoriteBorderIcon><span> Wishlist</span></Button>
+                                    <Button variant="outlined" className="wishlist-button" ><FavoriteBorderIcon fontSize="small"></FavoriteBorderIcon><Typography> Wishlist</Typography></Button>
                                 </ThemeProvider>
                             </div>
                         </div>
                         <ThemeProvider theme={theme}>
-                            <Button variant="contained" className="cart-button" >Add to cart</Button>
+                            <Button variant="contained" className="cart-button" ><Typography>Add to cart</Typography></Button>
                         </ThemeProvider>
                     </div>                    
                 </div>

@@ -3,24 +3,22 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import {  useTheme } from '@emotion/react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import './Reviews.component.css';
-import { TextField } from "@mui/material";
 import Review_Helper from './Review-helper.component';
 import Button from '@mui/material/Button';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import StarRating from '../StarRating/StarRating';
+import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
+import { styled } from '@mui/system';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-    const theme = createTheme({
-      palette: {
-        primary: {
-          main: '#000',
-        },
-      },
-    });
     return (
       <div
         role="tabpanel"
@@ -37,6 +35,33 @@ function TabPanel(props) {
       </div>
     );
   }
+  const Textarea = styled(BaseTextareaAutosize)(
+    ({ theme }) => `
+    font-family: IBM Plex Sans, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #1C2025;
+    border: 1px solid #1C2025;
+    box-shadow: 0px 2px 2px #F3F6F9;
+
+    &:hover {
+      border-color: #B0B8C4;
+    }
+
+    &:focus {
+      border-color: #B0B8C4;
+      box-shadow: 0 0 0 3px #DAE2ED;
+    }
+
+    // firefox
+    &:focus-visible {
+      outline: 0;
+    }
+  `,
+  );
 const text = "I bought it 3 weeks ago and now come back just to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupt et quas molestias excepturi sint non provident.";
 export default function Reviews_component(){
     const [value, setValue] = useState(0);
@@ -56,7 +81,7 @@ export default function Reviews_component(){
     return (
         <div>
             <ThemeProvider theme={theme}>
-                <Tabs value={value} onChange={handleChange} textColor="black">
+                <Tabs value={value} onChange={handleChange}>
                     <Tab label="Additional Info"  />
                     <Tab label="Questions"  />
                     <Tab label="Reviews" />
@@ -74,24 +99,84 @@ export default function Reviews_component(){
                                         
                 </div>
                 </TabPanel>
+
                 <TabPanel value={value} index={1}>
-                Item Two
+                  <Accordion className='product-questions'>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}>
+                      <Typography>What is the quality of material used?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails className='review-answers'>
+                      <Typography>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                        malesuada lacus ex, sit amet blandit leo lobortis eget.
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+
+
+                  <Accordion className='product-questions'>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}>
+                      <Typography>Does paint come off after 6 months of use?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails className='review-answers'>
+                      <Typography>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                        malesuada lacus ex, sit amet blandit leo lobortis eget.
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+
+
+                  <Accordion className='product-questions'>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}>
+                      <Typography>Is it strong enought to hold a person?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails className='review-answers'>
+                      <Typography>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                        malesuada lacus ex, sit amet blandit leo lobortis eget.
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+
+
+                  <Accordion className='product-questions'>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}>
+                      <Typography>Can anyone tell me the exact size of this table with respect to a person?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails className='review-answers'>
+                      <Typography>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                        malesuada lacus ex, sit amet blandit leo lobortis eget.
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
                 </TabPanel>
+
                 <TabPanel value={value} index={2}>
                 <div className='reviews'>
                 <ThemeProvider theme={theme}>
-                  <div className='review-textarea'>
-                    <TextField className="review-message" label=''>\
-                    </TextField>
-                    <Button variant='contained' className='review-button'> Write a Review</Button>                    
+                  
+                  <div className='product-rating'>
+                    <h4>Please rate our product</h4>
+                    <StarRating></StarRating>
+                    <div className='review-textarea'>
+                      <Textarea className='review-message' minRows={2} />
+                      <Button variant='contained' className='review-button'> Write a Review</Button>                    
+                    </div>
                   </div>
                 </ThemeProvider>
-               
-                  <h3>11 Reviews</h3>
-                  <br></br>
-                  <Review_Helper img ='assets/images/Table-placeholder-1.png' rating={Math.random()*5} name={'Sofia Harvetz'} text = {text}></Review_Helper>
-                  <Review_Helper img ='assets/images/Table-placeholder-2.png' rating={Math.random()*5} name={'Sofia Harvetz'} text = {text}></Review_Helper>
-                  <Review_Helper img ='assets/images/Table-placeholder-3.png' rating={Math.random()*5} name={'Sofia Harvetz'} text = {text}></Review_Helper>
+                  <div className='actual-reviews'>
+                    <h3>11 Reviews</h3>
+                    <br></br>
+                    <Review_Helper img ='assets/images/Table-placeholder-1.png' rating={Math.random()*5} name={'Sofia Harvetz'} text = {text}></Review_Helper>
+                    <Review_Helper img ='assets/images/Table-placeholder-2.png' rating={Math.random()*5} name={'Sofia Harvetz'} text = {text}></Review_Helper>
+                    <Review_Helper img ='assets/images/Table-placeholder-3.png' rating={Math.random()*5} name={'Sofia Harvetz'} text = {text}></Review_Helper>
+                  </div>
                 </div>
                 </TabPanel>
             </SwipeableViews>
