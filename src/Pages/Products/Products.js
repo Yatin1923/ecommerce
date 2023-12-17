@@ -11,8 +11,12 @@ export default function Products(){
     return (
         <div className="container"> 
         <Transitions>
-            <Product_component></Product_component>
-            <Reviews_component></Reviews_component>
+            <div className="product-info">
+                <Product_component></Product_component>
+            </div>
+            <div className="product-review">
+                <Reviews_component></Reviews_component>
+            </div>
         </Transitions>
         </div>
     )

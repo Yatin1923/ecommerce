@@ -1,3 +1,15 @@
 .additional-info{
     width: 70%;
 }
+.review-button{
+    border-radius: 2rem !important;
+}
+.review-textarea{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    margin: 2vh 0;
+}
+.review-message{
+    width: 75%;
+}

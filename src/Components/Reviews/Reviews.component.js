@@ -8,10 +8,19 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import './Reviews.component.css';
+import { TextField } from "@mui/material";
+import Review_Helper from './Review-helper.component';
+import Button from '@mui/material/Button';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-  
+    const theme = createTheme({
+      palette: {
+        primary: {
+          main: '#000',
+        },
+      },
+    });
     return (
       <div
         role="tabpanel"
@@ -28,11 +37,10 @@ function TabPanel(props) {
       </div>
     );
   }
-
+const text = "I bought it 3 weeks ago and now come back just to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupt et quas molestias excepturi sint non provident.";
 export default function Reviews_component(){
     const [value, setValue] = useState(0);
-    const theme = useTheme();
-    const _theme = createTheme({
+    const theme = createTheme({
         palette: {
           primary: {
             main: '#000',
@@ -47,7 +55,7 @@ export default function Reviews_component(){
       };
     return (
         <div>
-            <ThemeProvider theme={_theme}>
+            <ThemeProvider theme={theme}>
                 <Tabs value={value} onChange={handleChange} textColor="black">
                     <Tab label="Additional Info"  />
                     <Tab label="Questions"  />
@@ -58,23 +66,33 @@ export default function Reviews_component(){
                 <TabPanel value={value} index={0}>
                 <div className='additional-info'>
                     <h5>Details</h5>
-                    <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque bibendum, massa eu pretium venenatis, dolor orci convallis quam, sit amet fermentum tellus dolor ut magna.</p>
-                    
-                    <p>Curabitur ut quam a velit bibendum blandit. Nullam vitae ligula sed tellus consequat luctus. Donec sed lacinia lectus, eleifend ultrices mauris.Ut eu dui accumsan, scelerisque tortor congue, sodales lorem.</p> 
-                    <p>Quisque vulputate eros vel ipsum euismod vulputate. Duis sodales felis nunc, sollicitudin consectetur tellus imperdiet luctus. Morbi lacinia in nisl sed consequat. </p>
-                    
-                    
-                    <p> Praesent venenatis et orci et placerat. Nunc non bibendum sapien. Vestibulum scelerisque ultricies lectus in porta. Etiam sed sapien metus. Quisque vulputate molestie aliquet. </p>
-                    
-                    <p>Donec ultrices dolor felis, in mattis urna porttitor tempus. Etiam iaculis iaculis turpis, ut hendrerit tortor suscipit eu. Duis tempus magna at ante cursus, vel feugiat diam lacinia. Duis ut mauris dapibus, pharetra justo sit amet, fringilla nisi. In maximus libero sit amet aliquet sollicitudin. In hac habitasse platea dictumst.</p>
+                    <p>You can use the removable tray for serving. The design makes it easy to put the tray back after use since you place it directly on the table frame without having to fit it into any holes.</p>
+                    <h5>Packaging</h5>
+                    <p>Width: 20 " Height: 1 ½ " Length: 21 ½ "</p>
+                    <p>Weight: 7 lb 8 oz</p>
+                    <p>Package(s): 1</p>
+                                        
                 </div>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                 Item Two
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                Item Three
+                <div className='reviews'>
+                <ThemeProvider theme={theme}>
+                  <div className='review-textarea'>
+                    <TextField className="review-message" label=''>\
+                    </TextField>
+                    <Button variant='contained' className='review-button'> Write a Review</Button>                    
+                  </div>
+                </ThemeProvider>
+               
+                  <h3>11 Reviews</h3>
+                  <br></br>
+                  <Review_Helper img ='assets/images/Table-placeholder-1.png' rating={Math.random()*5} name={'Sofia Harvetz'} text = {text}></Review_Helper>
+                  <Review_Helper img ='assets/images/Table-placeholder-2.png' rating={Math.random()*5} name={'Sofia Harvetz'} text = {text}></Review_Helper>
+                  <Review_Helper img ='assets/images/Table-placeholder-3.png' rating={Math.random()*5} name={'Sofia Harvetz'} text = {text}></Review_Helper>
+                </div>
                 </TabPanel>
             </SwipeableViews>
         </div>

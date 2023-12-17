@@ -105,13 +105,13 @@ export default function Contact(){
                             </div>
                         </div>
                         <form className='submit-form'>
+                            <ThemeProvider theme={theme}>
                             <label>FULL NAME</label>
                             <TextField id="outlined-basic" label="Full name" variant="outlined" className='input-field' />
                             <label>EMAIL ADDRESS</label>
                             <TextField id="outlined-basic" label="Email Address" variant="outlined" />
                             <label>MESSAGE</label>
                             <Textarea placeholder='Message' minRows={5} />
-                            <ThemeProvider theme={theme}>
                                 <Button variant="contained" className="submit-button" type='submit'> Send Message</Button>
                             </ThemeProvider>
                         </form>
