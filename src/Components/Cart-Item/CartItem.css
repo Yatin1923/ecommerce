@@ -1,0 +1,11 @@
+.ci_image {
+    img{
+        width: 100%;
+        height: 80%;
+    }
+}
+.ci_itemContent{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+}

@@ -1,0 +1,16 @@
+.product-quantity {
+    display: flex;
+    gap: 1vw;
+    align-items: center;
+    background-color: #f3f5f7;
+    border-radius: 0.3rem;
+    padding: 1vh 1vw;
+   }
+   
+   .quantity-btns {
+    cursor: pointer;
+   }
+   .quantity-btns:focus{
+    cursor: pointer;
+    opacity: 0.55 !important;
+}

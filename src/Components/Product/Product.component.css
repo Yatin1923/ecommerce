@@ -62,14 +62,7 @@ hr{
     align-items: center;
     gap: 1vw;
 }
-.product-quantity{
-    display: flex;
-    gap: 1vw;
-    align-items: center;
-    background-color: #f3f5f7;
-    border-radius: 0.3rem;
-    padding: 1vh 1vw;
-}
+
 .add-to-wishlist{
     width: 100%;
 }
@@ -80,13 +73,7 @@ hr{
     justify-content: center;
     gap: 0.5vw;
 }
-.quantity-btns{
-    cursor: pointer;
-}
-.quantity-btns:focus{
-    cursor: pointer;
-    opacity: 0.55 !important;
-}
+
 .cart-button{
     width: 100%;
 }
