@@ -16,8 +16,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import StarRating from '../StarRating/StarRating';
 import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
+import React from 'react';
 
-function TabPanel(props) {
+function TabPanel(props:any) {
     const { children, value, index, ...other } = props;
     return (
       <div
@@ -163,7 +164,7 @@ export default function Reviews_component(){
                   
                   <div className='product-rating'>
                     <h4>Please rate our product</h4>
-                    <StarRating></StarRating>
+                    <StarRating value={undefined}></StarRating>
                     <div className='review-textarea'>
                       <Textarea className='review-message' minRows={2} />
                       <Button variant='contained' className='review-button'> Write a Review</Button>                    

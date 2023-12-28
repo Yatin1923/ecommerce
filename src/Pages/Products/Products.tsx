@@ -4,6 +4,7 @@ import Transitions from "../../Components/Transition/Transition";
 import Product_component from "../../Components/Product/Product.component";
 import './Products.css';
 import Reviews_component from "../../Components/Reviews/Reviews.component";
+import React from "react";
 export default function Products(){
     useEffect(()=>{
         window.scrollTo({top:0,behavior:'instant'});

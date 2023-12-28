@@ -1,14 +1,16 @@
 import './ItemCard.css';
-import StarRating from "../../Components/StarRating/StarRating";
+import StarRating from "../StarRating/StarRating";
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { addToCart } from '../../Redux/action';
+import { useSelector, useDispatch } from 'react-redux'
+import {addToCart} from '../../Redux/reducers'
+import React from 'react';
 
- function ItemCard(props){
+
+export default function ItemCard(props:any){
     const theme = createTheme({
         palette: {
           primary: {
@@ -16,22 +18,14 @@ import { addToCart } from '../../Redux/action';
           },
         },
       });
-      const handleAddToCart = () => {
-        // Dispatch the addToCart action with the item details
-        props.addToCart({
-          name: props.name,
-          price: props.price,
-          // Add other item details as needed
-        });
-      };
-    
+      const dispatch = useDispatch();
     return(
         <div className="item" >
         <div >
             <div className='img-div '>
             <Link to='/products' className="item-link">
                 <img src={props.image} alt='image test' />
-    </Link>
+            </Link>
                 <div className='labels'>
                     <div className="label">
                         <span>{props.new?'NEW' : ''}</span>
@@ -44,7 +38,7 @@ import { addToCart } from '../../Redux/action';
                     <FavoriteBorderOutlinedIcon/>
                 </IconButton>
                 <ThemeProvider theme={theme}>
-                    <Button variant="contained" className="AddToCartBtn"  onClick={handleAddToCart}> Add to cart</Button>
+                    <Button variant="contained" className="AddToCartBtn" onClick={()=>dispatch(addToCart(props))}>Add to cart</Button>
                 </ThemeProvider>
            
             </div>
@@ -63,5 +57,3 @@ import { addToCart } from '../../Redux/action';
 
     )
 }
-
-export default connect(null, { addToCart })(ItemCard);

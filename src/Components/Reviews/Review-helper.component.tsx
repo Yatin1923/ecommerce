@@ -1,4 +1,5 @@
-import StarRating from "../../Components/StarRating/StarRating";
+import React from "react";
+import StarRating from "../StarRating/StarRating";
 import './Review-helper.component.css';
 export default function Review_Helper(props){
     return (

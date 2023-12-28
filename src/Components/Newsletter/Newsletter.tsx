@@ -1,7 +1,8 @@
 import './Newsletter.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { TextField } from "@mui/material";
-import CustomButton from "../../Components/Button/CustomButton";
+import CustomButton from "../Button/CustomButton";
+import React from 'react';
 
 export default function Newsletter(){
     const theme = createTheme({

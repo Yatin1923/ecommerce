@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import './Product.component.css';
-import StarRating from "../../Components/StarRating/StarRating";
+import StarRating from "../StarRating/StarRating";
 import { Divider } from '@mui/material';
 import Countdown from "react-countdown";
 import AddIcon from '@mui/icons-material/Add';
@@ -9,6 +9,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Typography from '@mui/material/Typography';
+import React from "react";
 
 export default function Product_component(){
     

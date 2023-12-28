@@ -5,44 +5,24 @@ import ShoppingBagOutlined from '@mui/icons-material/ShoppingBagOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { NavLink } from 'react-router-dom';
-import FlyOutCart from '../FlyOutCart/FlyOutCart';
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import { useSelector} from 'react-redux'
 
-// const CustomLink = styled(Link)`
-//  background-color: #4CAF50;
-//  border: none;
-//  color: white;
-//  padding: 10px 20px;
-//  text-align: center;
-//  text-decoration: none;
-//  display: inline-block;
-//  font-size: 16px;
-//  margin: 4px 2px;
-//  cursor: pointer;
-// `;
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: '#000',
-//     },
-//   },
-// });
 
- 
-// const toggleDrawer =
-//     (open: boolean) =>
-//     (event: ) => {
-//       if (
-//         event.type === 'keydown' &&
-//         ((event as React.KeyboardEvent).key === 'Tab' ||
-//           (event as React.KeyboardEvent).key === 'Shift')
-//       ) {
-//         return;
-//       }
 
-//       setState({ ...state, [anchor]: open });
-//     };
 
+const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge': {
+      top: 5,
+      backgroundColor:'black',
+      color:'white',
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: '0 4px',
+    },
+  }));
 export default function Navbar(props){
+let totalCartItems = useSelector((state:any)=>state.cart.length);
 let [isShowNav, setShowNav] = React.useState(true);
 let lastScrollTop =0;
 React.useEffect(()=>{
@@ -84,9 +64,11 @@ React.useEffect(()=>{
                 <IconButton >
                     <AccountCircleOutlinedIcon/>
                 </IconButton>
-                <IconButton onClick={props.toggleDrawer}>
-                    <ShoppingBagOutlined/>
-                </IconButton>
+                <StyledBadge badgeContent={totalCartItems}>
+                    <IconButton onClick={props.toggleDrawer} >
+                        <ShoppingBagOutlined/>
+                    </IconButton>
+                </StyledBadge>
             </div>
           </div>
            

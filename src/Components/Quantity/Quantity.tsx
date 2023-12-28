@@ -4,7 +4,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
 
-export default function Quantity(props){
+export default function Quantity(props:any){
     const [quantity,setQuantity] = useState(props.quantity??1);
 
 

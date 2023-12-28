@@ -22,30 +22,25 @@ const toggleDrawer =  ()=>{
 }
  return (
   <Provider store={store}>
-
     <div className="App">
       <AnimatePresence>
-
         <Router>
         <Navbar toggleDrawer = {toggleDrawer}/>
         <div>
           <FlyOutCart isOpen={isDrawerOpen} toggleDrawer = {toggleDrawer}/>
         </div>
          <div className='routes'>
-
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='products' element={<Products />} />
             <Route path='shop' element={<Shop />} />
             <Route path='contact' element={<Contact />} />
           </Routes>
-          
          </div>
         <Newsletter/>
         <Footer/>
         </Router>
       </AnimatePresence>
-
     </div>
   </Provider>
 
