@@ -18,12 +18,12 @@ export default function CartItem(props:any){
                 <img src={props.image}></img>
             </div>
             <div className='ci_itemContent'>
-                <div>
+                <div className='cart-content-left'>
                     <strong>{props.name}</strong>
                     <p>Color: {props.color}</p>
                     <Quantity quantity={props.quantity}></Quantity>
                 </div>
-                <div>
+                <div className='cart-content-right'>
                     <strong>${Number(props.price)}</strong>
                     <div>
                         <IconButton onClick={()=>dispatch(removeFromCart(props))}>
