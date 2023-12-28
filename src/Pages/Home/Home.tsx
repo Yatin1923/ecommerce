@@ -69,12 +69,12 @@ export default function Home(){
                             <CustomButton name="More Products" href='/shop'/>
                         </div>
                         <Carousel responsive={responsive} showDots={true}>
-                            <ItemCard name ='Loveseat Sofa' image='/assets/images/Sofa.svg' rating={5} price='199.99' oldprice='400.00' new={true} discount={50}/>
-                            <ItemCard name ='Side Table' image='assets/images/Bedroom-side-table.svg' rating={5} price='49.99' oldprice='100.00' new={true} discount={50}/>
-                            <ItemCard name ='Table Lamp' image='assets/images/Table-lamp.svg' rating={4} price='89.99' oldprice='100.00' new={true} discount={10}/>
-                            <ItemCard name ='Toaster' image='assets/images/Toaster-crop.svg' rating={4.5} price='109.99' new={true}/>
-                            <ItemCard name ='Beige Table Lamp' image='assets/images/Table-lamp-2.svg' rating={3.2} price='99.99' new={true}/>
-                            <ItemCard name ='Basket' image='assets/images/Basket.svg' rating={3.5} price='29.99' new={true}/>
+                            <ItemCard name ='Loveseat Sofa' image='/assets/images/Sofa.svg' quantity={1} rating={5} price='199.99' oldprice='400.00' new={true} discount={50}/>
+                            <ItemCard name ='Side Table' image='assets/images/Bedroom-side-table.svg' quantity={1} rating={5} price='49.99' oldprice='100.00' new={true} discount={50}/>
+                            <ItemCard name ='Table Lamp' image='assets/images/Table-lamp.svg' quantity={1} rating={4} price='89.99' oldprice='100.00' new={true} discount={10}/>
+                            <ItemCard name ='Toaster' image='assets/images/Toaster-crop.svg' quantity={1} rating={4.5} price='109.99' new={true}/>
+                            <ItemCard name ='Beige Table Lamp' image='assets/images/Table-lamp-2.svg' quantity={1} rating={3.2} price='99.99' new={true}/>
+                            <ItemCard name ='Basket' image='assets/images/Basket.svg' quantity={1} rating={3.5} price='29.99' new={true}/>
                         </Carousel>
                     </div>
                     <div className="features">
