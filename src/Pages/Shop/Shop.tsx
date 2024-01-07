@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import Transitions from "../../Components/Transition/Transition";
 import './Shop.css';
 import Button from '@mui/material/Button';
@@ -6,18 +6,29 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 import ItemCard from "../../Components/Item-card/ItemCard";
 import React from "react";
+import axios from 'axios'
 
+export interface Items{
+    id: Key ;
+    name:string,
+    imageUrl:string,
+    quantity:Number,
+    rating:Number,
+    price:string,
+    new:boolean,
+    discount:Number
 
+}
 export default function Shop(){
     let initialItemsData = [
-        { name: 'Loveseat Sofa', image: '/assets/images/Sofa.svg', quantity: 1, rating: 5, price: '199.99', oldprice: '400.00', new: true, discount: 50 },
-        { name: 'Side Table', image: 'assets/images/Bedroom-side-table.svg', quantity: 1, rating: 5, price: '49.99', oldprice: '100.00', new: true, discount: 50 },
-        { name: 'Table Lamp', image: 'assets/images/Table-lamp.svg', quantity: 1, rating: 4, price: '89.99', oldprice: '100.00', new: true, discount: 10 },
-        { name: 'Toaster', image: 'assets/images/Toaster-crop.svg', quantity: 1, rating: 4.5, price: '109.99', new: true },
-        { name: 'Beige Table Lamp', image: 'assets/images/Table-lamp-2.svg', quantity: 1, rating: 3.2, price: '99.99', new: true },
-        { name: 'Basket', image: 'assets/images/Basket.svg', quantity: 1, rating: 3.5, price: '29.99', new: true },
+        { name: 'Loveseat Sofa', imageUrl: '/assets/images/Sofa.svg', quantity: 1, rating: 5, price: '199.99', oldprice: '400.00', new: true, discount: 50 },
+        { name: 'Side Table', imageUrl: 'assets/images/Bedroom-side-table.svg', quantity: 1, rating: 5, price: '49.99', oldprice: '100.00', new: true, discount: 50 },
+        { name: 'Table Lamp', imageUrl: 'assets/images/Table-lamp.svg', quantity: 1, rating: 4, price: '89.99', oldprice: '100.00', new: true, discount: 10 },
+        { name: 'Toaster', imageUrl: 'assets/images/Toaster-crop.svg', quantity: 1, rating: 4.5, price: '109.99', new: true },
+        { name: 'Beige Table Lamp', imageUrl: 'assets/images/Table-lamp-2.svg', quantity: 1, rating: 3.2, price: '99.99', new: true },
+        { name: 'Basket', imageUrl: 'assets/images/Basket.svg', quantity: 1, rating: 3.5, price: '29.99', new: true },
       ];
-      const[itemsData, setItemsData]= useState(initialItemsData)
+      const[itemsData, setItemsData]= useState<Items[]>([])
       const[showMoreCount, setShowMoreCount]= useState(0)
       const showMore = ()=>{
         setShowMoreCount(showMoreCount+1);
@@ -27,6 +38,16 @@ export default function Shop(){
             }
         }
     useEffect(()=>{
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('https://localhost:7275/api/Item');
+                setItemsData(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+        console.log(itemsData)
         window.scrollTo({top:0,behavior:'instant'});
     },[]);
     const theme = createTheme({
@@ -78,8 +99,8 @@ export default function Shop(){
                 </div>
                 <div className="shop-item">
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                    {itemsData.map((item, index) => (
-                        <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
+                    {itemsData?.map((item, index) => (
+                        <Grid key={item.id} item xs={12} sm={6} md={4} lg={3}>
                         <ItemCard {...item} />
                         </Grid>
                     ))}

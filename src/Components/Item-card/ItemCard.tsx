@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import {addToCart} from '../../Redux/reducers'
 import React from 'react';
 
-
 export default function ItemCard(props:any){
     const theme = createTheme({
         palette: {
@@ -18,13 +17,14 @@ export default function ItemCard(props:any){
           },
         },
       });
+     
       const dispatch = useDispatch();
     return(
         <div className="item" >
         <div >
             <div className='img-div '>
-            <Link to='/products' className="item-link">
-                <img src={props.image} alt='image test' />
+            <Link to={{pathname:'/products'}} className="item-link">
+                <img src={props.imageUrl}  alt='image test' />
             </Link>
                 <div className='labels'>
                     <div className="label">
