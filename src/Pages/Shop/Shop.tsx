@@ -41,7 +41,9 @@ export default function Shop(){
         const fetchData = async () => {
             try {
                 const response = await axios.get('https://localhost:7275/api/Item');
-                setItemsData(response.data);
+                if(response.data){
+                    setItemsData(response.data);
+                }
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
