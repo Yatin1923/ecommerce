@@ -14,7 +14,7 @@ export default function FlyOutCart( props){
         <Drawer  open={props.isOpen} anchor='right' onClose={props.toggleDrawer} >
             <div className='sn_container'>
                 <h2>Cart</h2>
-                {cartItems.map(item=><CartItem image ={item.imageUrl} name={item.name} key={item.name} color="black" quantity={item.quantity??1} price={item.price}></CartItem>)}
+                {cartItems.map(item=><CartItem id={item.id} image ={item.imageUrl} name={item.name} key={item.name} color="black" quantity={item.quantity??1} price={item.price}></CartItem>)}
             </div>
         </Drawer>
     )

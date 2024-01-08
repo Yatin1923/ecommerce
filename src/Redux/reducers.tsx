@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+import axios from 'axios';
 const cartState = createSlice({
   name: 'cart',
   initialState: {
@@ -7,17 +7,27 @@ const cartState = createSlice({
   },
   reducers: {
     addToCart: (state,action:any) => {
-      let isExistingItem = false;
-      state.cart.forEach((item:any)=>{
-        if(item.name == action.payload.name){
-          item.quantity++;
-          isExistingItem = true;
-        }
-      });
-      if(!isExistingItem) state.cart.push(action.payload);
+     
+      axios.post("https://localhost:7275/api/Cart",{ItemId:action.payload.id,UserId:1}).then(response=>{
+        let isExistingItem = false;
+        state.cart.forEach((item:any)=>{
+          if(item.name == action.payload.name){
+            item.quantity++;
+            isExistingItem = true;
+          }
+        });
+        if(!isExistingItem) state.cart.push(action.payload);
+  
+      }).catch(error=>{
+        console.error(error)
+      })
     },
     removeFromCart: (state,action) => {
-      state.cart = state.cart.filter((item:any)=>item.name!=action.payload.name);
+      axios.delete(`https://localhost:7275/api/Cart?ItemId=${action.payload.id}&UserId=1`).then(response=>{
+        state.cart = state.cart.filter((item:any)=>item.name!=action.payload.name);
+      }).catch(error=>{
+        console.log(error);
+      })
     }
   }
 })
