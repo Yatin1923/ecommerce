@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import Transitions from "../../Components/Transition/Transition";
-// import image from "public/assets/images/black-table.svg";
 import Product_component from "../../Components/Product/Product.component";
 import './Products.css';
 import Reviews_component from "../../Components/Reviews/Reviews.component";

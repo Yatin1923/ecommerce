@@ -1,35 +1,54 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice,createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
+
+
+const addToCartAsync = createAsyncThunk('cart/addToCart', async (payload:any) => {
+  try {
+    const res = await axios.post("https://localhost:7275/api/Cart", {
+      ItemId: payload.id,
+      UserId: 1,
+    }).catch(error=>{
+      return error
+    })
+
+    return res.data?payload:res.data;
+  } catch (error) {
+    console.error('Error adding to cart:', error);
+    throw error;
+  }
+});
+const removeFromCartAsync = createAsyncThunk('cart/removeFromCart',async(payload:any)=>{
+  try{
+    const res = await axios.delete(`https://localhost:7275/api/Cart?ItemId=${payload.id}&UserId=1`).catch(error=>{
+      return error
+    })
+    return res.status==200?payload:null;
+
+  }catch(error){
+    console.error('Error removing product from cart',error);
+    throw error;
+  }
+})
 const cartState = createSlice({
   name: 'cart',
   initialState: {
     cart: new Array()
   },
-  reducers: {
-    addToCart: (state,action:any) => {
-     
-      axios.post("https://localhost:7275/api/Cart",{ItemId:action.payload.id,UserId:1}).then(response=>{
-        let isExistingItem = false;
-        state.cart.forEach((item:any)=>{
-          if(item.name == action.payload.name){
-            item.quantity++;
-            isExistingItem = true;
-          }
-        });
-        if(!isExistingItem) state.cart.push(action.payload);
-  
-      }).catch(error=>{
-        console.error(error)
-      })
-    },
-    removeFromCart: (state,action) => {
-      axios.delete(`https://localhost:7275/api/Cart?ItemId=${action.payload.id}&UserId=1`).then(response=>{
-        state.cart = state.cart.filter((item:any)=>item.name!=action.payload.name);
-      }).catch(error=>{
-        console.log(error);
-      })
-    }
+  reducers: {}
+  ,extraReducers:(builder)=>{
+    builder.addCase(addToCartAsync.fulfilled,(state,action)=>{
+      const existingItem = state.cart.find(item => item.name === action.payload.name);
+
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        state.cart.push({ ...action.payload, quantity: 1 });
+      }
+    });
+    builder.addCase(removeFromCartAsync.fulfilled,(state,action:any)=>{
+      state.cart = state.cart.filter((item:any)=>item.name!=action.payload.name);
+    });
   }
 })
-export const { addToCart,removeFromCart } = cartState.actions
+export {addToCartAsync,removeFromCartAsync}
 export default cartState.reducer;

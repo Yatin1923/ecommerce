@@ -4,13 +4,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Divider } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import { useSelector, useDispatch } from 'react-redux'
-import {addToCart,removeFromCart} from '../../Redux/reducers'
+import {removeFromCartAsync} from '../../Redux/reducers'
 
 import Box from '@mui/material/Box';
 import Quantity from '../Quantity/Quantity';
 
 export default function CartItem(props:any){
-    const dispatch = useDispatch();
+const dispatch = useDispatch<any>();
     return(
         <div>
         <Box display='flex' gap='1vw' height='10vw' paddingTop={2}>
@@ -26,7 +26,7 @@ export default function CartItem(props:any){
                 <div className='cart-content-right'>
                     <strong>${Number(props.price)}</strong>
                     <div>
-                        <IconButton onClick={()=>dispatch(removeFromCart(props))}>
+                        <IconButton onClick={()=>dispatch(removeFromCartAsync(props))}>
                             <CloseIcon></CloseIcon>
                         </IconButton>
                     </div>

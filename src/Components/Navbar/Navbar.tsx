@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingBagOutlined from '@mui/icons-material/ShoppingBagOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate, useNavigation } from 'react-router-dom';
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import { useSelector} from 'react-redux'
@@ -126,7 +126,7 @@ React.useEffect(()=>{
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+          <NavLink to='/signup' className='navBtn' >Logout</NavLink>
         </MenuItem>
       </Menu>
                 <StyledBadge badgeContent={totalCartItems}>
