@@ -24,7 +24,11 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
       padding: '0 4px',
     },
   }));
-export default function Navbar(props){
+  export default function Navbar(props){
+    const navigate = useNavigate();
+    const logout = ()=>{
+      navigate('/signup');
+  }
 let totalCartItems = useSelector((state:any)=>state.cart.length);
 let [isShowNav, setShowNav] = React.useState(true);
 let lastScrollTop =0;
@@ -122,11 +126,13 @@ React.useEffect(()=>{
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem href='/signup' onClick={logout}>
+          {/* <NavLink to='/signup' className='navBtn'> */}
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          <NavLink to='/signup' className='navBtn' >Logout</NavLink>
+            Logout
+            {/* </NavLink> */}
         </MenuItem>
       </Menu>
                 <StyledBadge badgeContent={totalCartItems}>
