@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './SignUp.css';
+import LoadingButton from '@mui/lab/LoadingButton';
 import { Button, Checkbox, FormControl, Grid, Input, TextField, ThemeProvider, createTheme, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -23,6 +24,11 @@ export default function SignUp( ){
     const handleHaveAccount = ()=>{
         sethaveAccount(!haveAccount)
     }
+    React.useEffect(()=>{
+        if( localStorage.getItem('isLoggedIn')){
+            navigate('/');
+        }
+    })
   const form  = useForm<FormValues>({
     defaultValues:{
         email:'',
@@ -34,19 +40,25 @@ export default function SignUp( ){
   const {register,handleSubmit,formState}  = form
   const {errors} = formState 
     const [haveAccount, sethaveAccount] = React.useState(false);
+    const [loading, setloading] = React.useState(false);
     const navigate = useNavigate()
     const onSubmit = (data:FormValues)=>{
+        setloading(true);
         if(haveAccount){
             axios.post('https://localhost:7275/api/User/Authenticate',{email:data.email,password:data.password}).then(res=>{
                 if(res.data){
+                    localStorage.setItem('isLoggedIn','true');
                     navigate('/');
                 }
+                setloading(false);
             })
         }else{
             axios.post('https://localhost:7275/api/User',{name:data.name, email:data.email,password:data.password}).then(res=>{
                 if(res.data){
                     navigate('/');
+                    localStorage.setItem('isLoggedIn','true');
                 }
+                setloading(false);
             })
         }
     }
@@ -68,7 +80,7 @@ export default function SignUp( ){
                         <TextField {...register('email')} error={!!errors.email} helperText={!!errors.email?.message} required name="email"   variant="standard" label="Email Address" />
                         <TextField {...register('password')} error={!!errors.password} helperText={!!errors.password?.message} required name="password"   variant="standard" type='password' label="Password" className='input-field' />
                         <span><Checkbox required name="agreement"  ></Checkbox>I agree with <b>Privacy Policy</b> and  <b>Terms of use</b></span>
-                            <Button variant="contained" className="signup-button" type='submit'> Sign up</Button>
+                            <LoadingButton loading={loading} variant="contained" className="signup-button" type='submit'> Sign up</LoadingButton>
                     </ThemeProvider>
                  </form>
                 :
@@ -79,7 +91,7 @@ export default function SignUp( ){
                     <TextField required  {...register('email')} error={!!errors.email}  variant="standard" label="Email"   className='input-field' />
                     <TextField required   {...register('password')} error={!!errors.password} variant="standard" type='password' label="Password"   className='input-field' />
                     <span><Checkbox></Checkbox>Remember me</span>
-                        <Button variant="contained" className="signup-button" type='submit'> Sign In</Button>
+                        <LoadingButton loading={loading} variant="contained" className="signup-button" type='submit'> Sign In</LoadingButton>
                     </ThemeProvider>
                 </form>
                 }

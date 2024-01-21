@@ -2,7 +2,7 @@
 import './App.css';
 import CustomCarousel from './Components/Carousel/Carousel';
 import Navbar from './Components/Navbar/Navbar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Home from './Pages/Home/Home';
 import Footer from './Components/Footer/Footer';
 import Products from './Pages/Products/Products';
@@ -17,7 +17,12 @@ import store from './Redux/store';
 import SignUp from './Pages/SignUp/SignUp';
 const Layout = () => {
   const [isDrawerOpen,setDrawerOpen] = useState(false);
-  
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if(!localStorage.getItem('isLoggedIn')){
+      navigate('/signup');
+  }
+  })
   const location = useLocation();
 const toggleDrawer =  ()=>{
   setDrawerOpen(!isDrawerOpen);

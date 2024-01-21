@@ -9,7 +9,7 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import { useSelector} from 'react-redux'
 import { Avatar, Divider, ListItemIcon, Menu, MenuItem } from '@mui/material';
-import { Logout, PersonAdd, Settings } from '@mui/icons-material';
+import { Login, Logout, PersonAdd, Settings } from '@mui/icons-material';
 import { red } from '@mui/material/colors';
 
 
@@ -27,6 +27,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   export default function Navbar(props){
     const navigate = useNavigate();
     const logout = ()=>{
+      localStorage.removeItem('isLoggedIn')
       navigate('/signup');
   }
 let totalCartItems = useSelector((state:any)=>state.cart.length);
@@ -129,9 +130,9 @@ React.useEffect(()=>{
         <MenuItem href='/signup' onClick={logout}>
           {/* <NavLink to='/signup' className='navBtn'> */}
           <ListItemIcon>
-            <Logout fontSize="small" />
+          {localStorage.getItem('isLoggedIn')?<Logout fontSize="small" />:<Login fontSize="small" />}
           </ListItemIcon>
-            Logout
+          {localStorage.getItem('isLoggedIn')?'Logout':'Sign In'}
             {/* </NavLink> */}
         </MenuItem>
       </Menu>

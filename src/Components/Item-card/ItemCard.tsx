@@ -7,7 +7,8 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import {addToCartAsync} from '../../Redux/reducers'
-import React from 'react';
+import React, { useState } from 'react';
+import { LoadingButton } from '@mui/lab';
 
 export default function ItemCard(props:any){
     const theme = createTheme({
@@ -19,6 +20,12 @@ export default function ItemCard(props:any){
       });
      
       const dispatch = useDispatch<any>();
+      const [loading,setLoading] = useState(false);
+      const handleAddtoCart = async()=>{
+        setLoading(true);
+        await dispatch(addToCartAsync(props));
+        setLoading(false);
+      }
       
     return(
         <div className="item" >
@@ -39,7 +46,7 @@ export default function ItemCard(props:any){
                     <FavoriteBorderOutlinedIcon/>
                 </IconButton>
                 <ThemeProvider theme={theme}>
-                    <Button variant="contained" className="AddToCartBtn" onClick={()=> dispatch(addToCartAsync(props))}>Add to cart</Button>
+                    <LoadingButton loading={loading} variant="contained" className="AddToCartBtn" onClick={handleAddtoCart}>Add to cart</LoadingButton>
                 </ThemeProvider>
            
             </div>

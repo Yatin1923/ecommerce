@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import ItemCard from "../../Components/Item-card/ItemCard";
 import React from "react";
 export default function Home(){
+    
     useEffect(()=>{
         window.scrollTo({top:0,behavior:'instant'});
     },[]);
