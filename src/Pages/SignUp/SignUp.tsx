@@ -5,6 +5,7 @@ import { Button, Checkbox, FormControl, Grid, Input, TextField, ThemeProvider, c
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import toast, { Toaster } from 'react-hot-toast';
 export default function SignUp( ){
     type FormValues = {
         name:string,
@@ -41,7 +42,7 @@ export default function SignUp( ){
   const {errors} = formState 
     const [haveAccount, sethaveAccount] = React.useState(false);
     const [loading, setloading] = React.useState(false);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const onSubmit = (data:FormValues)=>{
         setloading(true);
         if(haveAccount){
@@ -49,6 +50,7 @@ export default function SignUp( ){
                 if(res.data){
                     localStorage.setItem('isLoggedIn','true');
                     navigate('/');
+                    toast.success('Login Successfully');
                 }
                 setloading(false);
             })
@@ -57,6 +59,7 @@ export default function SignUp( ){
                 if(res.data){
                     navigate('/');
                     localStorage.setItem('isLoggedIn','true');
+                    toast.success('Account created successfully');
                 }
                 setloading(false);
             })

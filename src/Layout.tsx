@@ -15,6 +15,7 @@ import FlyOutCart from './Components/FlyOutCart/FlyOutCart';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
 import SignUp from './Pages/SignUp/SignUp';
+import { Toaster } from 'react-hot-toast';
 const Layout = () => {
   const [isDrawerOpen,setDrawerOpen] = useState(false);
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ const toggleDrawer =  ()=>{
           <Footer/>
         </>
         }
+        <Toaster position="bottom-right" />
       </AnimatePresence>
     </div>
   </Provider>
