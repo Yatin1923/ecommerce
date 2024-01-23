@@ -52,17 +52,17 @@ export default function SignUp( ){
                     navigate('/');
                     toast.success('Login Successfully');
                 }
-                setloading(false);
-            })
+            }).finally(()=> setloading(false))
         }else{
             axios.post('https://localhost:7275/api/User',{name:data.name, email:data.email,password:data.password}).then(res=>{
                 if(res.data){
                     navigate('/');
                     localStorage.setItem('isLoggedIn','true');
-                    toast.success('Account created successfully');
+                    toast.success('Account created successfully',res.data);
                 }
-                setloading(false);
-            })
+            }).catch(error=>{
+                toast.error(error?.response?.data);
+            }).finally(()=> setloading(false))
         }
     }
     return (
