@@ -20,10 +20,10 @@ const Layout = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!localStorage.getItem('isLoggedIn')) {
+    if (!localStorage.getItem('JWTToken')) {
       navigate('/signup');
     }
-  })
+  },[])
   const location = useLocation();
   const toggleDrawer = () => {
     setDrawerOpen(!isDrawerOpen);
@@ -50,7 +50,7 @@ const Layout = () => {
               <Footer />
             </>
           }
-          <Toaster position="top-center" toastOptions={{
+          <Toaster key={1} position="top-center" toastOptions={{
             style: {
               borderRadius: '10px',
               background: '#333',

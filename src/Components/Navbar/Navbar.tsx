@@ -27,7 +27,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   export default function Navbar(props){
     const navigate = useNavigate();
     const logout = ()=>{
-      localStorage.removeItem('isLoggedIn')
+      localStorage.removeItem('JWTToken');
       navigate('/signup');
   }
 let totalCartItems = useSelector((state:any)=>state.cart.length);
@@ -130,9 +130,9 @@ React.useEffect(()=>{
         <MenuItem href='/signup' onClick={logout}>
           {/* <NavLink to='/signup' className='navBtn'> */}
           <ListItemIcon>
-          {localStorage.getItem('isLoggedIn')?<Logout fontSize="small" />:<Login fontSize="small" />}
+          {localStorage.getItem('JWTToken')?<Logout fontSize="small" />:<Login fontSize="small" />}
           </ListItemIcon>
-          {localStorage.getItem('isLoggedIn')?'Logout':'Sign In'}
+          {localStorage.getItem('JWTToken')?'Logout':'Sign In'}
             {/* </NavLink> */}
         </MenuItem>
       </Menu>

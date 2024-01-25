@@ -7,8 +7,7 @@ import { useSelector } from 'react-redux'
 export default function FlyOutCart(props) {
     let cartItems = useSelector((state: any) => state.cart);
 
-    React.useEffect(() => {
-    }, [props])
+
     return (
         <Drawer open={props.isOpen} anchor='right' onClose={props.toggleDrawer} >
             <div className='sn_container'>

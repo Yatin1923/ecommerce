@@ -23,13 +23,14 @@ export default function SignUp( ){
         },
       });
     const handleHaveAccount = ()=>{
+        form.reset();
         sethaveAccount(!haveAccount)
     }
     React.useEffect(()=>{
-        if( localStorage.getItem('isLoggedIn')){
+        if( localStorage.getItem('JWTToken')){
             navigate('/');
         }
-    })
+    },[])
   const form  = useForm<FormValues>({
     defaultValues:{
         email:'',
@@ -48,16 +49,24 @@ export default function SignUp( ){
         if(haveAccount){
             axios.post('https://localhost:7275/api/User/Authenticate',{email:data.email,password:data.password}).then(res=>{
                 if(res.data){
-                    localStorage.setItem('isLoggedIn','true');
+                    localStorage.setItem('JWTToken',res.data);
                     navigate('/');
                     toast.success('Login Successfully');
+                }else{
+                    toast.error('Login Failed: Invalid Email or Password');
                 }
-            }).finally(()=> setloading(false))
+            }).catch(error=>{
+                setloading(false);
+                toast.error('Error occured while creating your account');
+                
+            }).finally(()=> {
+                setloading(false);
+            })
         }else{
             axios.post('https://localhost:7275/api/User',{name:data.name, email:data.email,password:data.password}).then(res=>{
                 if(res.data){
                     navigate('/');
-                    localStorage.setItem('isLoggedIn','true');
+                    localStorage.setItem('JWTToken',res.data);
                     toast.success('Account created successfully',res.data);
                 }
             }).catch(error=>{

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import './Product.component.css';
 import StarRating from "../StarRating/StarRating";
 import { Divider } from '@mui/material';
