@@ -70,7 +70,7 @@ React.useEffect(()=>{
             <div className='navButtons'>
                 <NavLink to='/' className='navBtn' >HOME</NavLink>
                 <NavLink to='/shop' className='navBtn' >SHOP</NavLink>
-                <NavLink to='/products' className='navBtn'  >PRODUCT</NavLink>
+                {/* <NavLink to='/products' className='navBtn'  >PRODUCT</NavLink> */}
                 <NavLink to='/contact' className='navBtn' >CONTACT US</NavLink>
             </div>
             <div className='navIcons'>

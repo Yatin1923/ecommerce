@@ -4,12 +4,29 @@ import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
 import './Home.css';
 import Transitions from "../../Components/Transition/Transition";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ItemCard from "../../Components/Item-card/ItemCard";
 import React from "react";
+import axios from "axios";
+import { Items } from "../Shop/Shop";
 export default function Home(){
-    
+    const[itemsData, setItemsData]= useState<Items[]>([])
+    const fetchData = async () => {
+        try {
+            axios.get('https://localhost:7275/api/Item').then(response=>{
+
+                
+                if(response.data){
+                    setItemsData(response.data);
+                }
+            })
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
     useEffect(()=>{
+        fetchData();
         window.scrollTo({top:0,behavior:'instant'});
     },[]);
  
@@ -70,12 +87,15 @@ export default function Home(){
                             <CustomButton name="More Products" href='/shop'/>
                         </div>
                         <Carousel responsive={responsive} showDots={true}>
-                            <ItemCard name ='Loveseat Sofa' imageUrl='/assets/images/Sofa.svg' quantity={1} rating={5} price='199.99' oldprice='400.00' new={true} discount={50}/>
-                            <ItemCard name ='Side Table' imageUrl='assets/images/Bedroom-side-table.svg' quantity={1} rating={5} price='49.99' oldprice='100.00' new={true} discount={50}/>
-                            <ItemCard name ='Table Lamp' imageUrl='assets/images/Table-lamp.svg' quantity={1} rating={4} price='89.99' oldprice='100.00' new={true} discount={10}/>
-                            <ItemCard name ='Toaster' imageUrl='assets/images/Toaster-crop.svg' quantity={1} rating={4.5} price='109.99' new={true}/>
-                            <ItemCard name ='Beige Table Lamp' imageUrl='assets/images/Table-lamp-2.svg' quantity={1} rating={3.2} price='99.99' new={true}/>
-                            <ItemCard name ='Basket' imageUrl='assets/images/Basket.svg' quantity={1} rating={3.5} price='29.99' new={true}/>
+                        {itemsData?.map((item, index) => (
+                        <ItemCard {...item} />
+                        ))}
+                            {/* <ItemCard name ='Loveseat Sofa' imageUrl='/assets/images/Sofa.svg' quantity={1} rating={5} price='199.99' oldprice='400.00' isNew={true} discount={50}/>
+                            <ItemCard name ='Side Table' imageUrl='assets/images/Bedroom-side-table.svg' quantity={1} rating={5} price='49.99' oldprice='100.00' isNew={true} discount={50}/>
+                            <ItemCard name ='Table Lamp' imageUrl='assets/images/Table-lamp.svg' quantity={1} rating={4} price='89.99' oldprice='100.00' isNew={true} discount={10}/>
+                            <ItemCard name ='Toaster' imageUrl='assets/images/Toaster-crop.svg' quantity={1} rating={4.5} price='109.99' isNew={true}/>
+                            <ItemCard name ='Beige Table Lamp' imageUrl='assets/images/Table-lamp-2.svg' quantity={1} rating={3.2} price='99.99' isNew={true}/>
+                            <ItemCard name ='Basket' imageUrl='assets/images/Basket.svg' quantity={1} rating={3.5} price='29.99' isNew={true}/> */}
                         </Carousel>
                     </div>
                     <div className="features">

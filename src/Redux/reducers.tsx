@@ -50,7 +50,7 @@ const cartState = createSlice({
       }
     });
     builder.addCase(removeFromCartAsync.fulfilled,(state,action:any)=>{
-      state.cart = state.cart.filter((item:any)=>item.name!=action.payload.name);
+      state.cart = state.cart.filter((item:any)=>item.id!=action.payload.id);
     });
   }
 })

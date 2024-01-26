@@ -4,7 +4,9 @@ import Product_component from "../../Components/Product/Product.component";
 import './Products.css';
 import Reviews_component from "../../Components/Reviews/Reviews.component";
 import React from "react";
+import { useLocation } from "react-router-dom";
 export default function Products(){
+    const location = useLocation();
     useEffect(()=>{
         window.scrollTo({top:0,behavior:'instant'});
     },[]);
@@ -12,10 +14,10 @@ export default function Products(){
         <div className="container"> 
         <Transitions>
             <div className="product-info">
-                <Product_component></Product_component>
+                <Product_component props = {location.state}></Product_component>
             </div>
             <div className="product-review">
-                <Reviews_component></Reviews_component>
+                <Reviews_component props={location.state}></Reviews_component>
             </div>
         </Transitions>
         </div>

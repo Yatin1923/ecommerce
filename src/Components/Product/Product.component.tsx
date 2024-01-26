@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import './Product.component.css';
 import StarRating from "../StarRating/StarRating";
 import { Divider } from '@mui/material';
@@ -11,7 +11,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import Typography from '@mui/material/Typography';
 import React from "react";
 
-export default function Product_component(){
+export default function Product_component(props){
     
     const [quantity,setQuantity] = useState(1);
     const [countdownDate] = useState(Date.now() + Math.random() * 1000000000);
@@ -56,7 +56,7 @@ export default function Product_component(){
         <div className="container"> 
             <div className="product-details">
                 <div className="product-images">
-                        <img className="main-image" src='assets/images/Table-img.png'></img>
+                        <img className="main-image" src={props.props?.imageUrl}></img>
                     <div className="placeHolders">
                         <img className="" src='assets/images/Table-placeholder-1.png'></img>
                         <img className="" src='assets/images/Table-placeholder-2.png'></img>
@@ -64,11 +64,11 @@ export default function Product_component(){
                     </div>
                 </div>
                 <div className="product-content">
-                    <StarRating value={4}></StarRating> 11 reviews
-                    <h1>Tray Table</h1>
+                    <StarRating value={props.props?.rating}></StarRating> 11 reviews
+                    <h1>{props.props?.name}</h1>
                     <p>Buy one or buy a few and make every space where you sit more convenient. Light and easy to move around with removable tray top, handy for serving snacks.</p>
                     <div className="product-price">
-                        <h3>$199.99</h3> <s>$499.99</s>
+                        <h3>${props.props?.price}</h3> <s>{props.props?.oldprice?'$'+props.props?.oldprice:''}</s>
                     </div>
                     <br></br>
                     <Divider></Divider>

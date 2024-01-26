@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import {addToCartAsync} from '../../Redux/reducers'
 import React, { useState } from 'react';
@@ -31,12 +31,12 @@ export default function ItemCard(props:any){
         <div className="item" >
         <div >
             <div className='img-div '>
-            <Link to={{pathname:'/products'}} className="item-link">
+            <Link to={{pathname:'/products'}} state={props} className="item-link">
                 <img src={props.imageUrl}  alt='image test' />
             </Link>
                 <div className='labels'>
                     <div className="label">
-                        <span>{props.new?'NEW' : ''}</span>
+                        <span>{props.isNew?'NEW' : ''}</span>
                     </div>
                     <div className="label green">
                         <span>{props.discount? '-'+props.discount +'%':''}</span>

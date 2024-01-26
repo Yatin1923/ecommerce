@@ -1,7 +1,7 @@
 
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
@@ -17,6 +17,7 @@ import StarRating from '../StarRating/StarRating';
 import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 import React from 'react';
+import axios from 'axios';
 
 function TabPanel(props:any) {
     const { children, value, index, ...other } = props;
@@ -64,7 +65,17 @@ function TabPanel(props:any) {
   `,
   );
 const text = "I bought it 3 weeks ago and now come back just to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupt et quas molestias excepturi sint non provident.";
-export default function Reviews_component(){
+export default function Reviews_component(props){
+  const [review,setReview] = useState(new Array());
+  const [rating,setRating] = useState(0);
+  const [submitReview,setSubmitReview] = useState('');
+  const fetchReview = ()=>{
+    axios.get(`https://localhost:7275/api/Review?ItemId=${props.props?.id}`).then((response:any)=>{
+      if(response.data.length>0){
+        setReview(response.data);
+      }
+    })
+  }
     const [value, setValue] = useState(0);
     const theme = createTheme({
         palette: {
@@ -79,6 +90,21 @@ export default function Reviews_component(){
     const handleChangeIndex = (index) => {
         setValue(index);
       };
+      const submit = ()=>{
+        if(submitReview.trim() !=''){
+          axios.post('https://localhost:7275/api/Review',{itemId:props.props?.id,review:submitReview,rating:rating,createdOn:new Date(Date.now()).toISOString(),createdBy:'Yatin'}).then((response:any)=>{
+            if(response.status ==200){
+              setReview([...review,response.data])
+            }
+          })
+        }
+      }
+      const handleRatingChange = (newValue)=>{
+        setRating(newValue);
+      }
+      useEffect(() => {
+        fetchReview();
+      },[])
     return (
         <div>
             <ThemeProvider theme={theme}>
@@ -164,19 +190,25 @@ export default function Reviews_component(){
                   
                   <div className='product-rating'>
                     <h4>Please rate our product</h4>
-                    <StarRating value={undefined}></StarRating>
+                    <StarRating value={undefined} onChange={handleRatingChange}></StarRating>
                     <div className='review-textarea'>
-                      <Textarea className='review-message' minRows={2} />
-                      <Button variant='contained' className='review-button'> Write a Review</Button>                    
+                      <Textarea className='review-message' minRows={2} onBlur={(event)=>{setSubmitReview(event?.target.value)}} />
+                      <Button variant='contained' className='review-button' onClick={submit}> Write a Review</Button>                    
                     </div>
                   </div>
                 </ThemeProvider>
                   <div className='actual-reviews'>
-                    <h3>11 Reviews</h3>
+                    <h3>{review.length} Reviews</h3>
                     <br></br>
-                    <Review_Helper img ='assets/images/Table-placeholder-1.png' rating={Math.random()*5} name={'Sofia Harvetz'} text = {text}></Review_Helper>
-                    <Review_Helper img ='assets/images/Table-placeholder-2.png' rating={Math.random()*5} name={'Sofia Harvetz'} text = {text}></Review_Helper>
-                    <Review_Helper img ='assets/images/Table-placeholder-3.png' rating={Math.random()*5} name={'Sofia Harvetz'} text = {text}></Review_Helper>
+                    {review?.map((item:any, index) => (
+                      <div>
+
+                        <Review_Helper img ={`assets/images/Table-placeholder-${Math.floor(Math.random()*3+1)}.png`} rating={item.rating} name={'Yatin'} text = {item.review}></Review_Helper>
+                        {/* <Review_Helper img ='assets/images/Table-placeholder-2.png' rating={item.rating} name={'Yatin'} text = {item.review}></Review_Helper>
+                        <Review_Helper img ='assets/images/Table-placeholder-3.png' rating={item.rating} name={'Yatin'} text = {item.review}></Review_Helper>  */}
+                      </div>
+                    ))}
+                    
                   </div>
                 </div>
                 </TabPanel>
