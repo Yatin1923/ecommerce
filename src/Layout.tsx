@@ -16,6 +16,7 @@ import { Provider } from 'react-redux';
 import store from './Redux/store';
 import SignUp from './Pages/SignUp/SignUp';
 import { Toaster } from 'react-hot-toast';
+import Cart from './Pages/Cart/Cart';
 const Layout = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const Layout = () => {
               <div className='routes'>
                 <Routes>
                   <Route path='/' element={<Home />} />
+                  <Route path='/cart' element={<Cart />} />
                   <Route path='products' element={<Products />} />
                   <Route path='shop' element={<Shop />} />
                   <Route path='contact' element={<Contact />} />

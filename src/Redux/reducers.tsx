@@ -42,7 +42,7 @@ const cartState = createSlice({
   ,extraReducers:(builder)=>{
     builder.addCase(addToCartAsync.fulfilled,(state,action)=>{
       const existingItem = state.cart.find(item => item.name === action.payload.name);
-
+    console.log(action);
       if (existingItem) {
         existingItem.quantity++;
       } else {

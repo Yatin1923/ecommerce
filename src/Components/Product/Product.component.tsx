@@ -10,12 +10,23 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Typography from '@mui/material/Typography';
 import React from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import {addToCartAsync} from '../../Redux/reducers'
+import { LoadingButton } from '@mui/lab';
 
 export default function Product_component(props){
-    
     const [quantity,setQuantity] = useState(1);
     const [countdownDate] = useState(Date.now() + Math.random() * 1000000000);
-
+    const [loading,setLoading] = useState(false);
+    useEffect(()=>{
+        console.log('PRoduct props',props)
+    })
+    const dispatch = useDispatch<any>();
+    const handleAddtoCart = async()=>{
+        setLoading(true);
+        await dispatch(addToCartAsync(props.props));
+        setLoading(false);
+      }
 
     const updateQuantity = (action)=>{
         if (action === 'increment'){
@@ -64,7 +75,7 @@ export default function Product_component(props){
                     </div>
                 </div>
                 <div className="product-content">
-                    <StarRating value={props.props?.rating}></StarRating> 11 reviews
+                    <StarRating value={props.props?.rating} onChange={undefined}></StarRating> 11 reviews
                     <h1>{props.props?.name}</h1>
                     <p>Buy one or buy a few and make every space where you sit more convenient. Light and easy to move around with removable tray top, handy for serving snacks.</p>
                     <div className="product-price">
@@ -92,7 +103,7 @@ export default function Product_component(props){
                             </div>
                         </div>
                         <ThemeProvider theme={theme}>
-                            <Button variant="contained" className="cart-button" ><Typography>Add to cart</Typography></Button>
+                            <LoadingButton loading={loading} onClick={handleAddtoCart} variant="contained" className="cart-button" ><Typography>Add to cart</Typography></LoadingButton>
                         </ThemeProvider>
                     </div>                    
                 </div>

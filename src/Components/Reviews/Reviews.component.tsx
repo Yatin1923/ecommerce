@@ -18,6 +18,7 @@ import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAuto
 import { styled } from '@mui/system';
 import React from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 function TabPanel(props:any) {
     const { children, value, index, ...other } = props;
@@ -91,12 +92,14 @@ export default function Reviews_component(props){
         setValue(index);
       };
       const submit = ()=>{
-        if(submitReview.trim() !=''){
+        if(submitReview.trim() !='' && rating ){
           axios.post('https://localhost:7275/api/Review',{itemId:props.props?.id,review:submitReview,rating:rating,createdOn:new Date(Date.now()).toISOString(),createdBy:'Yatin'}).then((response:any)=>{
             if(response.status ==200){
               setReview([...review,response.data])
             }
           })
+        }else{
+          toast.error('Please add some rating to the product');
         }
       }
       const handleRatingChange = (newValue)=>{
@@ -202,10 +205,7 @@ export default function Reviews_component(props){
                     <br></br>
                     {review?.map((item:any, index) => (
                       <div>
-
                         <Review_Helper img ={`assets/images/Table-placeholder-${Math.floor(Math.random()*3+1)}.png`} rating={item.rating} name={'Yatin'} text = {item.review}></Review_Helper>
-                        {/* <Review_Helper img ='assets/images/Table-placeholder-2.png' rating={item.rating} name={'Yatin'} text = {item.review}></Review_Helper>
-                        <Review_Helper img ='assets/images/Table-placeholder-3.png' rating={item.rating} name={'Yatin'} text = {item.review}></Review_Helper>  */}
                       </div>
                     ))}
                     

@@ -57,7 +57,7 @@ export default function SignUp( ){
                 }
             }).catch(error=>{
                 setloading(false);
-                toast.error('Error occured while creating your account');
+                toast.error('Error occured while Signing in');
                 
             }).finally(()=> {
                 setloading(false);

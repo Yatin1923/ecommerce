@@ -9,6 +9,7 @@ export default function Products(){
     const location = useLocation();
     useEffect(()=>{
         window.scrollTo({top:0,behavior:'instant'});
+        console.log(location.state);
     },[]);
     return (
         <div className="container"> 

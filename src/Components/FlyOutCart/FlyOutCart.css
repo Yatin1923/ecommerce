@@ -1,4 +1,11 @@
 .sn_container{
     padding: 3vh 2vw;
     width: 25vw;
+    height: 100%;
+    position: relative;
+}
+.view-cart-btn{
+    position: sticky !important;
+    bottom: 5vh;
+    width: 20vw;
 }

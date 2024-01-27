@@ -22,6 +22,7 @@ export default function ItemCard(props:any){
       const dispatch = useDispatch<any>();
       const [loading,setLoading] = useState(false);
       const handleAddtoCart = async()=>{
+        console.log('ItemCardPRops',props)
         setLoading(true);
         await dispatch(addToCartAsync(props));
         setLoading(false);
@@ -53,7 +54,7 @@ export default function ItemCard(props:any){
             <Link to='/products' className="item-link">
            
             <div className="item-details">
-                <StarRating value={props.rating}/>
+                <StarRating value={props.rating} onChange={()=>{}}/>
                 <strong>{props.name}</strong>
                 <div>
                     <strong>{'$'+props.price}</strong><s className="oldprice"> {props.oldprice? '$'+props.oldprice:''}</s>

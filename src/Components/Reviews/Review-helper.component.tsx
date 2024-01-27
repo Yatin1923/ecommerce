@@ -11,7 +11,7 @@ export default function Review_Helper(props){
                 <div className="review-name">
                     <span>{props.name}</span>
                 </div>
-                <StarRating value={props.rating}></StarRating>
+                <StarRating value={props.rating} onChange={()=>{}}></StarRating>
                 <div className="review-text">
                     <p>{props.text}</p>
                 </div>
