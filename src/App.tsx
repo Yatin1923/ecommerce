@@ -16,20 +16,13 @@ import store from './Redux/store';
 import SignUp from './Pages/SignUp/SignUp';
 import Layout from './Layout';
 function App() {
-  const [isDrawerOpen,setDrawerOpen] = useState(false);
-  const [isAuthenticated, setAuthenticated] = useState(false);
-
-const toggleDrawer =  ()=>{
-  setDrawerOpen(!isDrawerOpen);
-}
-
-
  return (
+  <Provider store={store}>
    <Router>
   <Layout></Layout>
  </Router>
+ </Provider>
  );
-
 }
 
 export default App;

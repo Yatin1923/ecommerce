@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
+import { useSelector, useDispatch } from 'react-redux'
+import {addToCartAsync} from '../../Redux/reducers'
+
 export default function SignUp( ){
     type FormValues = {
         name:string,
@@ -22,12 +25,15 @@ export default function SignUp( ){
           },
         },
       });
+    const dispatch = useDispatch<any>();
+    
+
     const handleHaveAccount = ()=>{
         form.reset();
         sethaveAccount(!haveAccount)
     }
     React.useEffect(()=>{
-        if( localStorage.getItem('JWTToken')){
+        if(localStorage.getItem('JWTToken')){
             navigate('/');
         }
     },[])
@@ -49,15 +55,15 @@ export default function SignUp( ){
         if(haveAccount){
             axios.post('https://localhost:7275/api/User/Authenticate',{email:data.email,password:data.password}).then(res=>{
                 if(res.data){
-                    localStorage.setItem('JWTToken',res.data);
+                    localStorage.setItem('JWTToken',res.data.token);
                     navigate('/');
                     toast.success('Login Successfully');
-                }else{
+                                    }else{
                     toast.error('Login Failed: Invalid Email or Password');
                 }
             }).catch(error=>{
                 setloading(false);
-                toast.error('Error occured while Signing in');
+                                toast.error('Error occured while Signing in');
                 
             }).finally(()=> {
                 setloading(false);

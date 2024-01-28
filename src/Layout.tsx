@@ -12,17 +12,22 @@ import Shop from './Pages/Shop/Shop';
 import Contact from './Pages/Contact/Contact';
 import { AnimatePresence } from "framer-motion";
 import FlyOutCart from './Components/FlyOutCart/FlyOutCart';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import store from './Redux/store';
 import SignUp from './Pages/SignUp/SignUp';
 import { Toaster } from 'react-hot-toast';
 import Cart from './Pages/Cart/Cart';
+import { loadCartAsync } from './Redux/reducers';
 const Layout = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch<any>();
   useEffect(() => {
+    console.log("layout mounted")
     if (!localStorage.getItem('JWTToken')) {
       navigate('/signup');
+    }else{
+      dispatch(loadCartAsync(1))
     }
   },[])
   const location = useLocation();
@@ -30,9 +35,10 @@ const Layout = () => {
     setDrawerOpen(!isDrawerOpen);
   }
   return (
-    <Provider store={store}>
       <div className="App">
         <AnimatePresence>
+        <Navbar toggleDrawer={toggleDrawer} />
+
           {location.pathname == '/signup' ? <Routes><Route path='/signup' element={<SignUp />} /></Routes> :
             <>
               <Navbar toggleDrawer={toggleDrawer} />
@@ -61,7 +67,6 @@ const Layout = () => {
           }} />
         </AnimatePresence>
       </div>
-    </Provider>
   );
 };
 

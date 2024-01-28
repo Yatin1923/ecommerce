@@ -4,6 +4,9 @@ import cartReducer from './reducers'
 
 
 
-export default  configureStore({
+const store =  configureStore({
     reducer: cartReducer
   });
+  export type RootState = ReturnType<typeof store.getState>;
+  export type AppDispatch = typeof store.dispatch;
+  export default store
