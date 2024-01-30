@@ -88,7 +88,7 @@ export default function Home(){
                         </div>
                         <Carousel responsive={responsive} showDots={true}>
                         {itemsData?.map((item, index) => (
-                        <ItemCard {...item} />
+                        <ItemCard key={item.id} {...item} />
                         ))}
                             {/* <ItemCard name ='Loveseat Sofa' imageUrl='/assets/images/Sofa.svg' quantity={1} rating={5} price='199.99' oldprice='400.00' isNew={true} discount={50}/>
                             <ItemCard name ='Side Table' imageUrl='assets/images/Bedroom-side-table.svg' quantity={1} rating={5} price='49.99' oldprice='100.00' isNew={true} discount={50}/>

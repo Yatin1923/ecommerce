@@ -3,17 +3,17 @@ import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import { RootState } from './store';
 
-
-
-const loadCartAsync = createAsyncThunk('cart/loadCart', async (userId: number) => {
+let userId:number = 0;
+const loadCartAsync = createAsyncThunk('cart/loadCart', async (authenticateResponse: any) => {
   try {
-    const res = await axios.get(`https://localhost:7275/api/Cart?id=${userId}`)
+    
+    const res = await axios.get(`https://localhost:7275/api/Cart?id=${authenticateResponse.userId}`)
     let result: any[] = [];
     if (res.data) {
-      result = res.data;
+      authenticateResponse.cart = res.data
     }
 
-    return result;
+    return authenticateResponse;
   } catch (error) {
     toast.error('Error loading cart:', error)
     throw error;
@@ -23,15 +23,15 @@ const loadCartAsync = createAsyncThunk('cart/loadCart', async (userId: number) =
 const addToCartAsync = createAsyncThunk('cart/addToCart', async (payload: any, { getState }) => {
   try {
     const state: RootState = getState() as RootState;
-    const existingItem = state?.cart.find(item => item.id === payload.id);
+    const existingItem = state?.user.cart.find(item => item.id === payload.id);
     if (existingItem) {
-      const res = await axios.patch("https://localhost:7275/api/Cart", { userId: 1, itemId: existingItem.id, quantity: existingItem.quantity + 1 })
+      const res = await axios.patch("https://localhost:7275/api/Cart", { userId: userId, itemId: existingItem.id, quantity: existingItem.quantity + 1 })
       if (res.data > 0) toast.success('Added to Cart');
       return res.data > 0 ? existingItem : [];
     } else {
       const res = await axios.post("https://localhost:7275/api/Cart", {
         ItemId: payload.id,
-        UserId: 1,
+        UserId: userId,
       }).catch(error => {
         return error
       })
@@ -46,7 +46,7 @@ const addToCartAsync = createAsyncThunk('cart/addToCart', async (payload: any, {
 
 const removeFromCartAsync = createAsyncThunk('cart/removeFromCart', async (payload: any) => {
   try {
-    const res = await axios.delete(`https://localhost:7275/api/Cart?ItemId=${payload.id}&UserId=1`).catch(error => {
+    const res = await axios.delete(`https://localhost:7275/api/Cart?ItemId=${payload.id}&UserId=${userId}`).catch(error => {
       return error
     })
     toast.success('Removed from Cart')
@@ -58,32 +58,38 @@ const removeFromCartAsync = createAsyncThunk('cart/removeFromCart', async (paylo
     throw error;
   }
 })
-const cartState = createSlice({
-  name: 'cart',
+type User = {
+  id:Number,
+  name:string,
+  cart:any[]
+}
+let initialState:User = {
+  cart :new Array(),
+  id:0,
+  name:''
+}
+const userState = createSlice({
+  name: 'user',
   initialState: {
-    cart: new Array()
+    user: initialState
   },
   reducers: {}
   , extraReducers: (builder) => {
     builder.addCase(addToCartAsync.fulfilled, (state, action) => {
-      const existingItem = state.cart.find(item => item.id === action.payload.id);
+      const existingItem = state.user.cart.find(item => item.id === action.payload.id);
       if (existingItem) {
         existingItem.quantity++;
       } else {
-        state.cart.push({ ...action.payload, quantity: 1 });
+        state.user.cart.push({ ...action.payload, quantity: 1 });
       }
     });
     builder.addCase(removeFromCartAsync.fulfilled, (state, action: any) => {
-      state.cart = state.cart.filter((item: any) => item.id != action.payload.id);
+      state.user.cart = state.user.cart.filter((item: any) => item.id != action.payload.id);
     });
     builder.addCase(loadCartAsync.fulfilled, (state, action) => {
-      action.payload.forEach(item => {
-        if (item) {
-          state.cart.push(item);
-        }
-      })
+      state.user.cart = action.payload.cart.filter((item: any) => item !=null)
     })
   }
 })
 export { addToCartAsync, removeFromCartAsync, loadCartAsync }
-export default cartState.reducer;
+export default userState.reducer;

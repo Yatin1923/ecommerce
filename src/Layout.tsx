@@ -18,18 +18,19 @@ import SignUp from './Pages/SignUp/SignUp';
 import { Toaster } from 'react-hot-toast';
 import Cart from './Pages/Cart/Cart';
 import { loadCartAsync } from './Redux/reducers';
+import { jwtDecode } from 'jwt-decode';
 const Layout = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch<any>();
   useEffect(() => {
     console.log("layout mounted")
+    const decodedToken = jwtDecode(localStorage.getItem('JWTToken')??'');
+    console.log(decodedToken);
     if (!localStorage.getItem('JWTToken')) {
       navigate('/signup');
-    }else{
-      dispatch(loadCartAsync(1))
     }
-  },[])
+    },[])
   const location = useLocation();
   const toggleDrawer = () => {
     setDrawerOpen(!isDrawerOpen);
@@ -37,8 +38,6 @@ const Layout = () => {
   return (
       <div className="App">
         <AnimatePresence>
-        <Navbar toggleDrawer={toggleDrawer} />
-
           {location.pathname == '/signup' ? <Routes><Route path='/signup' element={<SignUp />} /></Routes> :
             <>
               <Navbar toggleDrawer={toggleDrawer} />

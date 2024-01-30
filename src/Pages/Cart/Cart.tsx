@@ -28,7 +28,8 @@ export default function Cart() {
             }
         }
     })
-    let cartItems = useSelector((state: any) => state.cart);
+
+    let cartItems = useSelector((state: any) => state.user.cart);
     const dispatch = useDispatch<any>();
 
     return (

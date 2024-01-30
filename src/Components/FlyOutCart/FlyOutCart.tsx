@@ -8,7 +8,7 @@ import { Button, createTheme,ThemeProvider, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 export default function FlyOutCart(props) {
-    let cartItems = useSelector((state: any) => state.cart);
+    let cartItems = useSelector((state: any) => state.user.cart);
     const theme = createTheme({
         palette: {
           primary: {
