@@ -25,8 +25,8 @@ const Layout = () => {
   const dispatch = useDispatch<any>();
   useEffect(() => {
     console.log("layout mounted")
-    const decodedToken = jwtDecode(localStorage.getItem('JWTToken')??'');
-    console.log(decodedToken);
+    // const decodedToken = jwtDecode(localStorage.getItem('JWTToken')??'');
+    // console.log(decodedToken);
     if (!localStorage.getItem('JWTToken')) {
       navigate('/signup');
     }
