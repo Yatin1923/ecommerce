@@ -58,47 +58,53 @@ export default function SignUp() {
   const navigate = useNavigate();
   const onSubmit = (data: FormValues) => {
     setloading(true);
+    navigate("/");
     if (haveAccount) {
-      axios
-        .post("https://localhost:7275/api/User/Authenticate", {
-          email: data.email,
-          password: data.password,
-        })
-        .then((res) => {
-          if (res.data) {
-            localStorage.setItem("JWTToken", res.data.token);
-             dispatch(loadCartAsync(res.data))
-            navigate("/");
-            toast.success("Login Successfully");
-          } else {
-            toast.error("Login Failed: Invalid Email or Password");
-          }
-        })
-        .catch((error) => {
-          setloading(false);
-          toast.error("Error occured while Signing in");
-        })
-        .finally(() => {
-          setloading(false);
-        });
+      // axios
+      //   .post("https://localhost:7275/api/User/Authenticate", {
+      //     email: data.email,
+      //     password: data.password,
+      //   })
+      //   .then((res) => {
+      //     if (res.data) {
+      //       localStorage.setItem("JWTToken", res.data.token);
+      //        dispatch(loadCartAsync(res.data))
+      //       navigate("/");
+      //       toast.success("Login Successfully");
+      //     } else {
+      //       toast.error("Login Failed: Invalid Email or Password");
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     setloading(false);
+      //     toast.error("Error occured while Signing in");
+      //   })
+      //   .finally(() => {
+      //     setloading(false);
+      //   });
+      toast.success("Login Successfully");
+      setloading(false);
     } else {
-      axios
-        .post("https://localhost:7275/api/User", {
-          name: data.name,
-          email: data.email,
-          password: data.password,
-        })
-        .then((res) => {
-          if (res.data) {
-            navigate("/");
-            localStorage.setItem("JWTToken", res.data);
-            toast.success("Account created successfully", res.data);
-          }
-        })
-        .catch((error) => {
-          toast.error(error?.response?.data);
-        })
-        .finally(() => setloading(false));
+      // axios
+      //   .post("https://localhost:7275/api/User", {
+      //     name: data.name,
+      //     email: data.email,
+      //     password: data.password,
+      //   })
+      //   .then((res) => {
+      //     if (res.data) {
+      //       navigate("/");
+      //       localStorage.setItem("JWTToken", res.data);
+      //       toast.success("Account created successfully", res.data);
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     toast.error(error?.response?.data);
+      //   })
+      //   .finally(() => setloading(false));
+      navigate("/");
+      toast.success("Account created successfully");
+      setloading(false)
     }
   };
   return (

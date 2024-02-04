@@ -30,7 +30,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
       localStorage.removeItem('JWTToken');
       navigate('/signup');
   }
-let totalCartItems = useSelector((state:any)=>state?.cart?.length);
+let totalCartItems = useSelector((state:any)=>state?.user.cart.length);
 let [isShowNav, setShowNav] = React.useState(true);
 let lastScrollTop =0;
 const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -43,6 +43,7 @@ const handleClose = () => {
 };
 React.useEffect(()=>{
       const handleScroll = () => {
+        console.log(totalCartItems,'length');
         const isScrollingDown =window.scrollY>lastScrollTop;
         lastScrollTop = window.scrollY;
         setShowNav(!isScrollingDown);
@@ -136,8 +137,8 @@ React.useEffect(()=>{
             {/* </NavLink> */}
         </MenuItem>
       </Menu>
-                <StyledBadge badgeContent={totalCartItems}>
-                    <IconButton onClick={props.toggleDrawer} >
+                <StyledBadge badgeContent={totalCartItems} >
+                    <IconButton onClick={props.toggleDrawer}>
                         <ShoppingBagOutlined/>
                     </IconButton>
                 </StyledBadge>

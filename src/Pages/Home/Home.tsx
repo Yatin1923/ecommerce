@@ -26,7 +26,7 @@ export default function Home(){
         }
     };
     useEffect(()=>{
-        fetchData();
+        //fetchData();
         window.scrollTo({top:0,behavior:'instant'});
     },[]);
  
@@ -87,15 +87,15 @@ export default function Home(){
                             <CustomButton name="More Products" href='/shop'/>
                         </div>
                         <Carousel responsive={responsive} showDots={true}>
-                        {itemsData?.map((item, index) => (
+                        {/* {itemsData?.map((item, index) => (
                         <ItemCard key={item.id} {...item} />
-                        ))}
-                            {/* <ItemCard name ='Loveseat Sofa' imageUrl='/assets/images/Sofa.svg' quantity={1} rating={5} price='199.99' oldprice='400.00' isNew={true} discount={50}/>
+                        ))} */}
+                            <ItemCard name ='Loveseat Sofa' imageUrl='/assets/images/Sofa.svg' quantity={1} rating={5} price='199.99' oldprice='400.00' isNew={true} discount={50}/>
                             <ItemCard name ='Side Table' imageUrl='assets/images/Bedroom-side-table.svg' quantity={1} rating={5} price='49.99' oldprice='100.00' isNew={true} discount={50}/>
                             <ItemCard name ='Table Lamp' imageUrl='assets/images/Table-lamp.svg' quantity={1} rating={4} price='89.99' oldprice='100.00' isNew={true} discount={10}/>
                             <ItemCard name ='Toaster' imageUrl='assets/images/Toaster-crop.svg' quantity={1} rating={4.5} price='109.99' isNew={true}/>
                             <ItemCard name ='Beige Table Lamp' imageUrl='assets/images/Table-lamp-2.svg' quantity={1} rating={3.2} price='99.99' isNew={true}/>
-                            <ItemCard name ='Basket' imageUrl='assets/images/Basket.svg' quantity={1} rating={3.5} price='29.99' isNew={true}/> */}
+                            <ItemCard name ='Basket' imageUrl='assets/images/Basket.svg' quantity={1} rating={3.5} price='29.99' isNew={true}/>
                         </Carousel>
                     </div>
                     <div className="features">

@@ -27,9 +27,9 @@ const Layout = () => {
     console.log("layout mounted")
     // const decodedToken = jwtDecode(localStorage.getItem('JWTToken')??'');
     // console.log(decodedToken);
-    if (!localStorage.getItem('JWTToken')) {
-      navigate('/signup');
-    }
+    // if (!localStorage.getItem('JWTToken')) {
+    //   navigate('/signup');
+    // }
     },[])
   const location = useLocation();
   const toggleDrawer = () => {

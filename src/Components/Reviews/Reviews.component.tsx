@@ -93,11 +93,12 @@ export default function Reviews_component(props){
       };
       const submit = ()=>{
         if(submitReview.trim() !='' && rating ){
-          axios.post('https://localhost:7275/api/Review',{itemId:props.props?.id,review:submitReview,rating:rating,createdOn:new Date(Date.now()).toISOString(),createdBy:'Yatin'}).then((response:any)=>{
-            if(response.status ==200){
-              setReview([...review,response.data])
-            }
-          })
+          setReview([...review,{itemId:props.props?.id,review:submitReview,rating:rating,createdOn:new Date(Date.now()).toISOString(),createdBy:'Yatin'}])
+          // axios.post('https://localhost:7275/api/Review',{itemId:props.props?.id,review:submitReview,rating:rating,createdOn:new Date(Date.now()).toISOString(),createdBy:'Yatin'}).then((response:any)=>{
+          //   if(response.status ==200){
+          //     setReview([...review,response.data])
+          //   }
+          // })
         }else{
           toast.error('Please add some rating to the product');
         }
@@ -106,7 +107,7 @@ export default function Reviews_component(props){
         setRating(newValue);
       }
       useEffect(() => {
-        fetchReview();
+        // fetchReview();
       },[])
     return (
         <div>
