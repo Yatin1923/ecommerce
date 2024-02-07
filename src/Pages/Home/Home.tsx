@@ -91,11 +91,11 @@ export default function Home(){
                         <ItemCard key={item.id} {...item} />
                         ))} */}
                             <ItemCard name ='Loveseat Sofa' imageUrl='/ecommerce/assets/images/Sofa.svg' quantity={1} rating={5} price='199.99' oldprice='400.00' isNew={true} discount={50}/>
-                            <ItemCard name ='Side Table' imageUrl='ecommerce/assets/images/Bedroom-side-table.svg' quantity={1} rating={5} price='49.99' oldprice='100.00' isNew={true} discount={50}/>
-                            <ItemCard name ='Table Lamp' imageUrl='ecommerce/assets/images/Table-lamp.svg' quantity={1} rating={4} price='89.99' oldprice='100.00' isNew={true} discount={10}/>
-                            <ItemCard name ='Toaster' imageUrl='ecommerce/assets/images/Toaster-crop.svg' quantity={1} rating={4.5} price='109.99' isNew={true}/>
+                            <ItemCard name ='Side Table' imageUrl='/ecommerce/assets/images/Bedroom-side-table.svg' quantity={1} rating={5} price='49.99' oldprice='100.00' isNew={true} discount={50}/>
+                            <ItemCard name ='Table Lamp' imageUrl='/ecommerce/assets/images/Table-lamp.svg' quantity={1} rating={4} price='89.99' oldprice='100.00' isNew={true} discount={10}/>
+                            <ItemCard name ='Toaster' imageUrl='/ecommerce/assets/images/Toaster-crop.svg' quantity={1} rating={4.5} price='109.99' isNew={true}/>
                             <ItemCard name ='Beige Table Lamp' imageUrl='ecommerce/assets/images/Table-lamp-2.svg' quantity={1} rating={3.2} price='99.99' isNew={true}/>
-                            <ItemCard name ='Basket' imageUrl='ecommerce/assets/images/Basket.svg' quantity={1} rating={3.5} price='29.99' isNew={true}/>
+                            <ItemCard name ='Basket' imageUrl='/ecommerce/assets/images/Basket.svg' quantity={1} rating={3.5} price='29.99' isNew={true}/>
                         </Carousel>
                     </div>
                     <div className="features">
