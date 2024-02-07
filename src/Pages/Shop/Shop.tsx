@@ -149,7 +149,7 @@ export default function Shop(){
                         </Grid>
                     ))} */}
                         <Grid key={1} item xs={12} sm={6} md={4} lg={3}>
-                            <ItemCard name='Loveseat Sofa' imageUrl='/assets/images/Sofa.svg' quantity={1} rating={5} price='199.99' oldprice='400.00' isNew={true} discount={50} />
+                            <ItemCard name='Loveseat Sofa' imageUrl='assets/images/Sofa.svg' quantity={1} rating={5} price='199.99' oldprice='400.00' isNew={true} discount={50} />
                         </Grid>
                         <Grid key={2} item xs={12} sm={6} md={4} lg={3}>
                             <ItemCard name='Side Table' imageUrl='assets/images/Bedroom-side-table.svg' quantity={1} rating={5} price='49.99' oldprice='100.00' isNew={true} discount={50} />
