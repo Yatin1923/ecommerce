@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ecommerce/static/css/main.7d6ebe14.css",
-    "main.js": "/ecommerce/static/js/main.8020087d.js",
+    "main.js": "/ecommerce/static/js/main.bc44604c.js",
     "static/js/787.866a9283.chunk.js": "/ecommerce/static/js/787.866a9283.chunk.js",
     "static/media/Shop-heading-bg.svg": "/ecommerce/static/media/Shop-heading-bg.23c830cc780cf7a15ee9.svg",
     "static/media/Living-room-chair.svg": "/ecommerce/static/media/Living-room-chair.0b226e9e17b3cdad1e78.svg",
@@ -70,11 +70,11 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/ecommerce/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/ecommerce/index.html",
     "main.7d6ebe14.css.map": "/ecommerce/static/css/main.7d6ebe14.css.map",
-    "main.8020087d.js.map": "/ecommerce/static/js/main.8020087d.js.map",
+    "main.bc44604c.js.map": "/ecommerce/static/js/main.bc44604c.js.map",
     "787.866a9283.chunk.js.map": "/ecommerce/static/js/787.866a9283.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7d6ebe14.css",
-    "static/js/main.8020087d.js"
+    "static/js/main.bc44604c.js"
   ]
 }
