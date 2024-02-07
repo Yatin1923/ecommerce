@@ -7,21 +7,21 @@ function CustomCarousel() {
       <Carousel.Item>
         <img
           className=""
-          src='assets/images/Living-room.svg'  
+          src='ecommerce/assets/images/Living-room.svg'  
           alt="First slide"
         />
       </Carousel.Item>
       <Carousel.Item>
         <img
           className=""
-          src='assets/images/Living-room-2.svg'
+          src='ecommerce/assets/images/Living-room-2.svg'
           alt="Second slide"
         />
       </Carousel.Item>
       <Carousel.Item>
         <img
           className=""
-          src='assets/images/Living-room-3.svg'
+          src='ecommerce/assets/images/Living-room-3.svg'
           alt="Third slide"
         />
       </Carousel.Item>

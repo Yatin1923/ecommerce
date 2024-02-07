@@ -56,12 +56,12 @@ export default function Shop(){
     };
     useEffect(()=>{
         let initialItemsData = [
-            { name: 'Loveseat Sofa', imageUrl: 'ecommerce/assets/images/Sofa.svg', quantity: 1, rating: 5, price: '199.99', oldprice: '400.00', new: true, discount: 50 },
-            { name: 'Side Table', imageUrl: 'ecommerce/assets/images/Bedroom-side-table.svg', quantity: 1, rating: 5, price: '49.99', oldprice: '100.00', new: true, discount: 50 },
-            { name: 'Table Lamp', imageUrl: 'ecommerce/assets/images/Table-lamp.svg', quantity: 1, rating: 4, price: '89.99', oldprice: '100.00', new: true, discount: 10 },
-            { name: 'Toaster', imageUrl: 'ecommerce/assets/images/Toaster-crop.svg', quantity: 1, rating: 4.5, price: '109.99', new: true },
-            { name: 'Beige Table Lamp', imageUrl: 'ecommerce/assets/images/Table-lamp-2.svg', quantity: 1, rating: 3.2, price: '99.99', new: true },
-            { name: 'Basket', imageUrl: 'ecommerce/assets/images/Basket.svg', quantity: 1, rating: 3.5, price: '29.99', new: true },
+            { name: 'Loveseat Sofa', imageUrl: 'ecommerce/ecommerce/assets/images/Sofa.svg', quantity: 1, rating: 5, price: '199.99', oldprice: '400.00', new: true, discount: 50 },
+            { name: 'Side Table', imageUrl: 'ecommerce/ecommerce/assets/images/Bedroom-side-table.svg', quantity: 1, rating: 5, price: '49.99', oldprice: '100.00', new: true, discount: 50 },
+            { name: 'Table Lamp', imageUrl: 'ecommerce/ecommerce/assets/images/Table-lamp.svg', quantity: 1, rating: 4, price: '89.99', oldprice: '100.00', new: true, discount: 10 },
+            { name: 'Toaster', imageUrl: 'ecommerce/ecommerce/assets/images/Toaster-crop.svg', quantity: 1, rating: 4.5, price: '109.99', new: true },
+            { name: 'Beige Table Lamp', imageUrl: 'ecommerce/ecommerce/assets/images/Table-lamp-2.svg', quantity: 1, rating: 3.2, price: '99.99', new: true },
+            { name: 'Basket', imageUrl: 'ecommerce/ecommerce/assets/images/Basket.svg', quantity: 1, rating: 3.5, price: '29.99', new: true },
           ];
         setItemsData(initialItemsData);
         //fetchData();
@@ -144,25 +144,25 @@ export default function Shop(){
                 <div className="shop-item">
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                         <Grid key={1} item xs={12} sm={6} md={4} lg={3}>
-                            <ItemCard name='Loveseat Sofa' imageUrl='assets/images/Sofa.svg' quantity={1} rating={5} price='199.99' oldprice='400.00' isNew={true} discount={50} />
+                            <ItemCard name='Loveseat Sofa' imageUrl='ecommerce/assets/images/Sofa.svg' quantity={1} rating={5} price='199.99' oldprice='400.00' isNew={true} discount={50} />
                         </Grid>
                         <Grid key={2} item xs={12} sm={6} md={4} lg={3}>
-                            <ItemCard name='Side Table' imageUrl='assets/images/Bedroom-side-table.svg' quantity={1} rating={5} price='49.99' oldprice='100.00' isNew={true} discount={50} />
+                            <ItemCard name='Side Table' imageUrl='ecommerce/assets/images/Bedroom-side-table.svg' quantity={1} rating={5} price='49.99' oldprice='100.00' isNew={true} discount={50} />
 
                         </Grid>
                         <Grid key={3} item xs={12} sm={6} md={4} lg={3}>
-                            <ItemCard name='Table Lamp' imageUrl='assets/images/Table-lamp.svg' quantity={1} rating={4} price='89.99' oldprice='100.00' isNew={true} discount={10} />
+                            <ItemCard name='Table Lamp' imageUrl='ecommerce/assets/images/Table-lamp.svg' quantity={1} rating={4} price='89.99' oldprice='100.00' isNew={true} discount={10} />
                         </Grid>
                         <Grid key={4} item xs={12} sm={6} md={4} lg={3}>
-                            <ItemCard name='Toaster' imageUrl='assets/images/Toaster-crop.svg' quantity={1} rating={4.5} price='109.99' isNew={true} />
+                            <ItemCard name='Toaster' imageUrl='ecommerce/assets/images/Toaster-crop.svg' quantity={1} rating={4.5} price='109.99' isNew={true} />
 
                         </Grid>
                         <Grid key={5} item xs={12} sm={6} md={4} lg={3}>
-                            <ItemCard name='Beige Table Lamp' imageUrl='assets/images/Table-lamp-2.svg' quantity={1} rating={3.2} price='99.99' isNew={true} />
+                            <ItemCard name='Beige Table Lamp' imageUrl='ecommerce/assets/images/Table-lamp-2.svg' quantity={1} rating={3.2} price='99.99' isNew={true} />
 
                         </Grid>
                         <Grid key={6} item xs={12} sm={6} md={4} lg={3}>
-                            <ItemCard name='Basket' imageUrl='assets/images/Basket.svg' quantity={1} rating={3.5} price='29.99' isNew={true} />
+                            <ItemCard name='Basket' imageUrl='ecommerce/assets/images/Basket.svg' quantity={1} rating={3.5} price='29.99' isNew={true} />
 
                         </Grid>
                     

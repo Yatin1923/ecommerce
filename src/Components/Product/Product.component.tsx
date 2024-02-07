@@ -69,9 +69,9 @@ export default function Product_component(props){
                 <div className="product-images">
                         <img className="main-image" src={props.props?.imageUrl}></img>
                     <div className="placeHolders">
-                        <img className="" src='assets/images/Table-placeholder-1.png'></img>
-                        <img className="" src='assets/images/Table-placeholder-2.png'></img>
-                        <img className="" src='assets/images/Table-placeholder-3.png'></img>
+                        <img className="" src='ecommerce/assets/images/Table-placeholder-1.png'></img>
+                        <img className="" src='ecommerce/assets/images/Table-placeholder-2.png'></img>
+                        <img className="" src='ecommerce/assets/images/Table-placeholder-3.png'></img>
                     </div>
                 </div>
                 <div className="product-content">

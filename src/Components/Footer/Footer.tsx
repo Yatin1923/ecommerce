@@ -31,13 +31,13 @@ export default function Footer(){
                         </div>
                         <div className="social-handlers">
                             <a href="#">
-                                <img src='assets/icons/instagram.svg'></img>
+                                <img src='ecommerce/assets/icons/instagram.svg'></img>
                             </a>
                             <a href="#">
-                                <img src='assets/icons/facebook.svg'></img>
+                                <img src='ecommerce/assets/icons/facebook.svg'></img>
                             </a>
                             <a href="#">
-                                <img src='assets/icons/youtube.svg'></img>
+                                <img src='ecommerce/assets/icons/youtube.svg'></img>
                             </a>
                         </div>
                     </div>

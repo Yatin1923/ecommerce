@@ -206,7 +206,7 @@ export default function Reviews_component(props){
                     <br></br>
                     {review?.map((item:any, index) => (
                       <div>
-                        <Review_Helper img ={`assets/images/Table-placeholder-${Math.floor(Math.random()*3+1)}.png`} rating={item.rating} name={'Yatin'} text = {item.review}></Review_Helper>
+                        <Review_Helper img ={`ecommerce/assets/images/Table-placeholder-${Math.floor(Math.random()*3+1)}.png`} rating={item.rating} name={'Yatin'} text = {item.review}></Review_Helper>
                       </div>
                     ))}
                     

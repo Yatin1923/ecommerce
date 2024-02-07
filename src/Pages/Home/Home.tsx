@@ -90,33 +90,33 @@ export default function Home(){
                         {/* {itemsData?.map((item, index) => (
                         <ItemCard key={item.id} {...item} />
                         ))} */}
-                            <ItemCard name ='Loveseat Sofa' imageUrl='/assets/images/Sofa.svg' quantity={1} rating={5} price='199.99' oldprice='400.00' isNew={true} discount={50}/>
-                            <ItemCard name ='Side Table' imageUrl='assets/images/Bedroom-side-table.svg' quantity={1} rating={5} price='49.99' oldprice='100.00' isNew={true} discount={50}/>
-                            <ItemCard name ='Table Lamp' imageUrl='assets/images/Table-lamp.svg' quantity={1} rating={4} price='89.99' oldprice='100.00' isNew={true} discount={10}/>
-                            <ItemCard name ='Toaster' imageUrl='assets/images/Toaster-crop.svg' quantity={1} rating={4.5} price='109.99' isNew={true}/>
-                            <ItemCard name ='Beige Table Lamp' imageUrl='assets/images/Table-lamp-2.svg' quantity={1} rating={3.2} price='99.99' isNew={true}/>
-                            <ItemCard name ='Basket' imageUrl='assets/images/Basket.svg' quantity={1} rating={3.5} price='29.99' isNew={true}/>
+                            <ItemCard name ='Loveseat Sofa' imageUrl='/ecommerce/assets/images/Sofa.svg' quantity={1} rating={5} price='199.99' oldprice='400.00' isNew={true} discount={50}/>
+                            <ItemCard name ='Side Table' imageUrl='ecommerce/assets/images/Bedroom-side-table.svg' quantity={1} rating={5} price='49.99' oldprice='100.00' isNew={true} discount={50}/>
+                            <ItemCard name ='Table Lamp' imageUrl='ecommerce/assets/images/Table-lamp.svg' quantity={1} rating={4} price='89.99' oldprice='100.00' isNew={true} discount={10}/>
+                            <ItemCard name ='Toaster' imageUrl='ecommerce/assets/images/Toaster-crop.svg' quantity={1} rating={4.5} price='109.99' isNew={true}/>
+                            <ItemCard name ='Beige Table Lamp' imageUrl='ecommerce/assets/images/Table-lamp-2.svg' quantity={1} rating={3.2} price='99.99' isNew={true}/>
+                            <ItemCard name ='Basket' imageUrl='ecommerce/assets/images/Basket.svg' quantity={1} rating={3.5} price='29.99' isNew={true}/>
                         </Carousel>
                     </div>
                     <div className="features">
                         <div className="eccards">
                             <div className="eccard">
-                                <img src='assets/icons/fast delivery.svg'></img>
+                                <img src='ecommerce/assets/icons/fast delivery.svg'></img>
                                 <h5>Free Shipping</h5>
                                 <p>Order above $200</p>
                             </div>
                             <div className="eccard">
-                                <img src='assets/icons/money.svg'></img>
+                                <img src='ecommerce/assets/icons/money.svg'></img>
                                 <h5>Money back</h5>
                                 <p>30 days gaurantee</p>
                             </div>
                             <div className="eccard">
-                                <img src='assets/icons/lock 01.svg'></img>
+                                <img src='ecommerce/assets/icons/lock 01.svg'></img>
                                 <h5>Secure Payments</h5>
                                 <p>Secured by Stripe</p>
                             </div>
                             <div className="eccard">
-                                <img src='assets/icons/call.svg'></img>
+                                <img src='ecommerce/assets/icons/call.svg'></img>
                                 <h5>24/7 Support</h5>
                                 <p>Phone and Email support</p>
                             </div>
@@ -124,7 +124,7 @@ export default function Home(){
                     </div>
                     <div className="sale">
                         <div className="sale-left">
-                            <img src='assets/images/Living-room.svg'></img>
+                            <img src='ecommerce/assets/images/Living-room.svg'></img>
                         </div>
                         <div className="sale-right">
                             <p>SALE UPTO 35% OFF</p>
@@ -144,7 +144,7 @@ export default function Home(){
                         <div className="new-article-item">
                                 <div>
                                     <div className="article-img-div">
-                                        <img src='assets/images/Living-room.svg'></img>
+                                        <img src='ecommerce/assets/images/Living-room.svg'></img>
                                     </div>
                                     <div className="item-details">
                                     <strong>7 Ways to decor your home</strong>
@@ -157,7 +157,7 @@ export default function Home(){
                         <div className="new-article-item">
                                 <div>
                                     <div className="article-img-div">
-                                        <img src='assets/images/Kitchen.svg'></img>
+                                        <img src='ecommerce/assets/images/Kitchen.svg'></img>
                                     </div>
                                     <div className="item-details">
                                     <strong>Kitchen organization</strong>
@@ -170,7 +170,7 @@ export default function Home(){
                         <div className="new-article-item">
                                 <div>
                                     <div className="article-img-div">
-                                        <img src='assets/images/Bedroom-messy.svg'></img>
+                                        <img src='ecommerce/assets/images/Bedroom-messy.svg'></img>
                                     </div>
                                     <div className="item-details">
                                     <strong>Decor your bedroom</strong>

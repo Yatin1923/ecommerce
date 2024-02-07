@@ -47,6 +47,7 @@ const Layout = () => {
               <div className='routes'>
                 <Routes>
                   <Route path='/' element={<Home />} />
+                  <Route path='/ecommerce' element={<Home />} />
                   <Route path='/cart' element={<Cart />} />
                   <Route path='products' element={<Products />} />
                   <Route path='shop' element={<Shop />} />

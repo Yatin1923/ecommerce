@@ -72,7 +72,7 @@ export default function Contact(){
                 </div>
                 <div className="about">
                         <div className="about-left">
-                            <img src='assets/images/Living-room-3.svg'></img>
+                            <img src='ecommerce/assets/images/Living-room-3.svg'></img>
                         </div>
                         <div className="about-right">
                             {/* <p>SALE UPTO 35% OFF</p> */}
@@ -90,17 +90,17 @@ export default function Contact(){
                         </div>
                         <div className='contact-cards'>
                             <div className='contact-card'>
-                            <img src='assets/icons/store.svg'></img>
+                            <img src='ecommerce/assets/icons/store.svg'></img>
                                 <h5>ADDRESS</h5>
                                 <strong>234 Hai Trieu, Ho Chi Minh City, Viet Nam</strong>
                             </div>
                             <div className='contact-card'>
-                                <img src='assets/icons/call.svg'></img>
+                                <img src='ecommerce/assets/icons/call.svg'></img>
                                 <h5>CONTACT US</h5>
                                 <strong>234 Hai Trieu, Ho Chi Minh City, Viet Nam</strong>
                             </div>
                             <div className='contact-card'>
-                                <img src='assets/icons/mail.svg'></img>
+                                <img src='ecommerce/assets/icons/mail.svg'></img>
                                 <h5>EMAIL</h5>
                                 <strong>234 Hai Trieu, Ho Chi Minh City, Viet Nam</strong>
                             </div>
