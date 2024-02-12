@@ -6,7 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 import ItemCard from "../../Components/Item-card/ItemCard";
 import React from "react";
-import axios from 'axios'
+import axios from '../../Interceptor/interceptor'
 import LoadingButton from "@mui/lab/LoadingButton";
 
 export interface Items{
@@ -49,7 +49,7 @@ export default function Shop(){
 
     const fetchData = async () => {
         try {
-            axios.get('https://localhost:7275/api/Item').then(response=>{
+            axios.get('Item').then(response=>{
 
                 
                 if(response.data){

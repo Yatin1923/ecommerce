@@ -17,7 +17,7 @@ import StarRating from '../StarRating/StarRating';
 import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 import React from 'react';
-import axios from 'axios';
+import axios from '../../Interceptor/interceptor';
 import toast from 'react-hot-toast';
 
 function TabPanel(props:any) {
@@ -71,7 +71,7 @@ export default function Reviews_component(props){
   const [rating,setRating] = useState(0);
   const [submitReview,setSubmitReview] = useState('');
   const fetchReview = ()=>{
-    axios.get(`https://localhost:7275/api/Review?ItemId=${props.props?.id}`).then((response:any)=>{
+    axios.get(`Review?ItemId=${props.props?.id}`).then((response:any)=>{
       if(response.data.length>0){
         setReview(response.data);
       }
@@ -93,7 +93,7 @@ export default function Reviews_component(props){
       };
       const submit = ()=>{
         if(submitReview.trim() !='' && rating ){
-          axios.post('https://localhost:7275/api/Review',{itemId:props.props?.id,review:submitReview,rating:rating,createdOn:new Date(Date.now()).toISOString(),createdBy:'Yatin'}).then((response:any)=>{
+          axios.post('Review',{itemId:props.props?.id,review:submitReview,rating:rating,createdOn:new Date(Date.now()).toISOString(),createdBy:'Yatin'}).then((response:any)=>{
             if(response.status ==200){
               setReview([...review,response.data])
             }

@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import toast, { Toaster } from 'react-hot-toast';
-import axios from 'axios';
+import axios from '../Interceptor/interceptor';
 import { RootState } from './store';
 
 let userId:number = 0;
 const loadCartAsync = createAsyncThunk('cart/loadCart', async (authenticateResponse: any) => {
   try {
     
-    const res = await axios.get(`https://localhost:7275/api/Cart?id=${authenticateResponse.userId}`)
+    const res = await axios.get(`Cart?id=${authenticateResponse.userId}`)
     let result: any[] = [];
     if (res.data) {
       authenticateResponse.cart = res.data
@@ -25,11 +25,11 @@ const addToCartAsync = createAsyncThunk('cart/addToCart', async (payload: any, {
     const state: RootState = getState() as RootState;
     const existingItem = state?.user.cart.find(item => item.id === payload.id);
     if (existingItem) {
-      const res = await axios.patch("https://localhost:7275/api/Cart", { userId: userId, itemId: existingItem.id, quantity: existingItem.quantity + 1 })
+      const res = await axios.patch("Cart", { userId: userId, itemId: existingItem.id, quantity: existingItem.quantity + 1 })
       if (res.data > 0) toast.success('Added to Cart');
       return res.data > 0 ? existingItem : [];
     } else {
-      const res = await axios.post("https://localhost:7275/api/Cart", {
+      const res = await axios.post("Cart", {
         ItemId: payload.id,
         UserId: userId,
       }).catch(error => {
@@ -46,7 +46,7 @@ const addToCartAsync = createAsyncThunk('cart/addToCart', async (payload: any, {
 
 const removeFromCartAsync = createAsyncThunk('cart/removeFromCart', async (payload: any) => {
   try {
-    const res = await axios.delete(`https://localhost:7275/api/Cart?ItemId=${payload.id}&UserId=${userId}`).catch(error => {
+    const res = await axios.delete(`Cart?ItemId=${payload.id}&UserId=${userId}`).catch(error => {
       return error
     })
     toast.success('Removed from Cart')

@@ -13,7 +13,7 @@ import {
   styled,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../Interceptor/interceptor";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { loadCartAsync } from "../../Redux/reducers";
@@ -60,7 +60,7 @@ export default function SignUp() {
     setloading(true);
     if (haveAccount) {
       axios
-        .post("https://localhost:7275/api/User/Authenticate", {
+        .post("User/Authenticate", {
           email: data.email,
           password: data.password,
         })
@@ -83,7 +83,7 @@ export default function SignUp() {
         });
     } else {
       axios
-        .post("https://localhost:7275/api/User", {
+        .post("User", {
           name: data.name,
           email: data.email,
           password: data.password,

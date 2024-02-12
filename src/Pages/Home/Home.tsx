@@ -7,19 +7,16 @@ import Transitions from "../../Components/Transition/Transition";
 import { useEffect, useState } from "react";
 import ItemCard from "../../Components/Item-card/ItemCard";
 import React from "react";
-import axios from "axios";
 import { Items } from "../Shop/Shop";
+import axios from "../../Interceptor/interceptor";
 export default function Home(){
     const[itemsData, setItemsData]= useState<Items[]>([])
     const fetchData = async () => {
         try {
-            axios.get('https://localhost:7275/api/Item').then(response=>{
-
-                
-                if(response.data){
-                    setItemsData(response.data);
-                }
-            })
+            const response = await  axios.get('Item')
+            if(response.data){
+                setItemsData(response.data);
+            }
 
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -33,7 +30,6 @@ export default function Home(){
       
     const responsive = {
         superLargeDesktop: {
-          // the naming can be any, depends on you.
           breakpoint: { max: 4000, min: 3000 },
           items: 6
         },
