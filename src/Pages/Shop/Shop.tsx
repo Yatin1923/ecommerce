@@ -48,7 +48,6 @@ export default function Shop(){
     const [price, setPrice] = useState('');
 
     const fetchData = async () => {
-        try {
             axios.get('Item').then(response=>{
 
                 
@@ -56,18 +55,15 @@ export default function Shop(){
                     setItemsData(response.data);
                     setfilteredData(response.data)
                 }
+            },(error)=>{
+                console.error('Error fetching data:', error);
             })
-
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
     };
     useEffect(()=>{
 
         fetchData();
-        return()=>{
-            window.scrollTo({top:0,behavior:'instant'});
-        }
+        window.scrollTo({top:0,behavior:'instant'});
+      
     },[]);
     const theme = createTheme({
         palette: {

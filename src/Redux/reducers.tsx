@@ -3,17 +3,17 @@ import toast, { Toaster } from 'react-hot-toast';
 import axios from '../Interceptor/interceptor';
 import { RootState } from './store';
 
-let userId:number = 0;
-const loadCartAsync = createAsyncThunk('cart/loadCart', async (authenticateResponse: any) => {
+let _userId:number = 0;
+const loadCartAsync = createAsyncThunk('cart/loadCart', async (userId: any) => {
   try {
-    
-    const res = await axios.get(`Cart?id=${authenticateResponse.userId}`)
+    _userId = userId
+    const res = await axios.get(`Cart?id=${userId}`)
     let result: any[] = [];
     if (res.data) {
-      authenticateResponse.cart = res.data
+      return res.data
     }
 
-    return authenticateResponse;
+    return null;
   } catch (error) {
     toast.error('Error loading cart:', error)
     throw error;
@@ -25,13 +25,13 @@ const addToCartAsync = createAsyncThunk('cart/addToCart', async (payload: any, {
     const state: RootState = getState() as RootState;
     const existingItem = state?.user.cart.find(item => item.id === payload.id);
     if (existingItem) {
-      const res = await axios.patch("Cart", { userId: userId, itemId: existingItem.id, quantity: existingItem.quantity + 1 })
+      const res = await axios.patch("Cart", { userId: _userId, itemId: existingItem.id, quantity: existingItem.quantity + 1 })
       if (res.data > 0) toast.success('Added to Cart');
       return res.data > 0 ? existingItem : [];
     } else {
       const res = await axios.post("Cart", {
         ItemId: payload.id,
-        UserId: userId,
+        UserId: _userId,
       }).catch(error => {
         return error
       })
@@ -46,7 +46,7 @@ const addToCartAsync = createAsyncThunk('cart/addToCart', async (payload: any, {
 
 const removeFromCartAsync = createAsyncThunk('cart/removeFromCart', async (payload: any) => {
   try {
-    const res = await axios.delete(`Cart?ItemId=${payload.id}&UserId=${userId}`).catch(error => {
+    const res = await axios.delete(`Cart?ItemId=${payload.id}&UserId=${_userId}`).catch(error => {
       return error
     })
     toast.success('Removed from Cart')
@@ -87,7 +87,7 @@ const userState = createSlice({
       state.user.cart = state.user.cart.filter((item: any) => item.id != action.payload.id);
     });
     builder.addCase(loadCartAsync.fulfilled, (state, action) => {
-      state.user.cart = action.payload.cart.filter((item: any) => item !=null)
+      state.user.cart = action.payload.filter((item: any) => item !=null)
     })
   }
 })

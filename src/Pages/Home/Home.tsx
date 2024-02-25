@@ -13,7 +13,7 @@ export default function Home(){
     const[itemsData, setItemsData]= useState<Items[]>([])
     const fetchData = async () => {
         try {
-            const response = await  axios.get('Item')
+            const response = await  axios.get('Item');
             if(response.data){
                 setItemsData(response.data);
             }

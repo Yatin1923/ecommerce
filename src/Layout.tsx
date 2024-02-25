@@ -24,11 +24,15 @@ const Layout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<any>();
   useEffect(() => {
-    console.log("layout mounted")
-    // const decodedToken = jwtDecode(localStorage.getItem('JWTToken')??'');
-    // console.log(decodedToken);
-    if (!localStorage.getItem('JWTToken')) {
-      navigate('/signup');
+    try{
+
+      const decodedToken:any = jwtDecode(localStorage.getItem('JWTToken')??'');
+      dispatch(loadCartAsync(decodedToken.UserId))
+      if (!localStorage.getItem('JWTToken')) {
+        navigate('/signup');
+      }
+    }catch(error){
+      console.error("Error occured while fetching token: ",error)
     }
     },[])
   const location = useLocation();

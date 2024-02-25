@@ -39,9 +39,9 @@ export default function SignUp() {
   };
   const dispatch = useDispatch<any>();
   React.useEffect(() => {
-    if (localStorage.getItem("JWTToken")) {
-      navigate("/");
-    }
+    // if (localStorage.getItem("JWTToken")) {
+    //   navigate("/");
+    // }
   }, []);
   const form = useForm<FormValues>({
     defaultValues: {
@@ -67,7 +67,7 @@ export default function SignUp() {
         .then((res) => {
           if (res.data) {
             localStorage.setItem("JWTToken", res.data.token);
-             dispatch(loadCartAsync(res.data))
+             dispatch(loadCartAsync(res.data.userId))
             navigate("/");
             toast.success("Login Successfully");
           } else {
