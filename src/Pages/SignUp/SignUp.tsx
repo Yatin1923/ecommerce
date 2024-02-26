@@ -91,8 +91,9 @@ export default function SignUp() {
         .then((res) => {
           if (res.data) {
             navigate("/");
-            localStorage.setItem("JWTToken", res.data);
-            toast.success("Account created successfully", res.data);
+            localStorage.setItem("JWTToken", res.data.token);
+            dispatch(loadCartAsync(res.data.userId))
+            toast.success("Account created successfully");
           }
         })
         .catch((error) => {
