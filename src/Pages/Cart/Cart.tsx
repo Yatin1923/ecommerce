@@ -4,7 +4,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import { Divider, FormControlLabel, IconButton, InputBase, Paper, Radio, RadioGroup, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, ThemeProvider, createTheme } from '@mui/material';
+import { Badge, Divider, FormControlLabel, IconButton, InputBase, Paper, Radio, RadioGroup, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, ThemeProvider, createTheme, styled } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCartAsync } from '../../Redux/reducers'
 import CloseIcon from '@mui/icons-material/Close';
@@ -12,6 +12,7 @@ import DiscountIcon from '@mui/icons-material/Discount';
 import './Cart.css'
 import ShippingCard from '../../Components/Shipping-card/ShippingCard';
 import { Label } from '@mui/icons-material';
+import CartItem from '../../Components/Cart-Item/CartItem';
 const steps = ['Shopping cart', 'Checkout details', 'Order complete'];
 
 export default function Cart() {
@@ -22,9 +23,20 @@ export default function Cart() {
             }
         }
     })
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+            top: 5,
+            backgroundColor: 'black',
+            color: 'white',
+            // border: `2px solid ${theme.palette.background.paper}`,
+            padding: '8px',
+        },
+    }));
     const [activeStep, setActiveStep] = React.useState(0);
+    const [shipping, setShipping] = React.useState(0);
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        window.scrollTo({top:0,behavior:'instant'})
     };
 
     const handleBack = () => {
@@ -34,16 +46,26 @@ export default function Cart() {
         if (event.target.value.toLowerCase() == "express shipping") {
             setCartSubtotal(cartInitialSubtotal + 15.99)
             setCarttotal(cartInitialTotal + 15.99)
+            setShipping(15.99)
+
         }
         if (event.target.value.toLowerCase() == "free shipping") {
+            setShipping(0)
             setCartSubtotal(cartInitialSubtotal)
             setCarttotal(cartInitialTotal)
         }
         if (event.target.value.toLowerCase() == "pick up") {
             let pickUpDiscount = cartSubtotal * 21 / 100
+            setShipping((-pickUpDiscount));
             setCartSubtotal(cartInitialSubtotal - pickUpDiscount)
             setCarttotal(cartInitialTotal - pickUpDiscount)
         }
+    }
+    const handleStepperClick = (index: number) => {
+        if (index < activeStep) {
+            setActiveStep(index);
+        }
+        window.scrollTo({top:0})
     }
     const [cartSubtotal, setCartSubtotal] = React.useState(0);
     const [cartTotal, setCarttotal] = React.useState(0);
@@ -70,7 +92,7 @@ export default function Cart() {
                 <Box sx={{ width: '100%' }}>
                     <Stepper activeStep={activeStep}>
                         {steps.map((label, index) => (
-                            <Step key={label}>
+                            <Step key={label} sx={{ cursor: 'pointer' }} onClick={() => handleStepperClick(index)} >
                                 <StepLabel>{label}</StepLabel>
                             </Step>
                         ))}
@@ -126,7 +148,7 @@ export default function Cart() {
                                 </div>
                                 <RadioGroup className='shipping-cards' defaultValue="Free shipping">
                                     <div className="shipping-card-container">
-                                    <FormControlLabel value="Free shipping" control={<Radio onChange={handleShippingChange} />} label="Free shipping" />
+                                        <FormControlLabel value="Free shipping" control={<Radio onChange={handleShippingChange} />} label="Free shipping" />
                                         <div className="shipping-cost">
                                             $0.00
                                         </div>
@@ -207,8 +229,8 @@ export default function Cart() {
                                     <div className='payment-info'>
                                         <h4>Payment method</h4>
                                         <RadioGroup className='shipping-cards' defaultValue="Free shipping">
-                                            <FormControlLabel className='payment-card-container' value="Payment by credit card" control={<Radio/>} label="Payment by credit card" />
-                                            <FormControlLabel className='payment-card-container' value="Paypal" control={<Radio/>} label="Paypal" />
+                                            <FormControlLabel className='payment-card-container' value="Payment by credit card" control={<Radio />} label="Payment by credit card" />
+                                            <FormControlLabel className='payment-card-container' value="Paypal" control={<Radio />} label="Paypal" />
                                         </RadioGroup>
                                         <Divider></Divider>
                                         <TextField sx={{ width: '100%' }} id="outlined-basic" label="Card number" placeholder='1234 **** **** **54' variant="outlined" />
@@ -217,12 +239,94 @@ export default function Cart() {
                                             <TextField sx={{ width: '50%' }} id="outlined-basic" label="CVC" variant="outlined" />
                                         </Box>
                                     </div>
+                                    <Button sx={{ width: '100%' }} variant="contained" onClick={handleNext}>Place your order</Button>
                                 </div>
-                                <div className='checkout-right'>
+                                <div className='order-summary' >
+                                    <div className='summary-heading'>
+                                        Order summary
+                                    </div>
+                                    <Box sx={{ margin: '2vh 0' }}>
 
+                                        {cartItems.length > 0 ?
+                                            cartItems.map(item =>
+                                                <CartItem id={item.id} image={item.imageUrl} name={item.name} key={item.name} color="black" quantity={item.quantity ?? 1} price={item.price}></CartItem>)
+                                            :
+                                            <h4>Cart is Empty</h4>}
+                                    </Box>
+                                    <Box
+                                        component="form"
+                                        sx={{ p: '2px 4px', margin: '2vh 0', display: 'flex', alignItems: 'center', width: 400, border: '1px solid lightgrey' }}
+                                    >
+                                        <IconButton>
+                                            <DiscountIcon></DiscountIcon>
+                                        </IconButton>
+                                        <InputBase
+                                            sx={{ ml: 1, flex: 1 }}
+                                            placeholder="Coupon Code"
+                                        />
+                                        <Button type="button" sx={{ p: '10px', opacity: '0.8' }}>
+                                            Apply
+                                        </Button>
+                                    </Box>
+
+                                    <Box sx={{ display: 'flex', flexDirection: "column", justifyContent: 'space-around', gap: '1vh' }}>
+                                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }} className='cart-subtotal'>
+                                            <span>Shipping</span>
+                                            <span>${shipping.toFixed(2)}</span>
+                                        </Box>
+                                        <Divider />
+                                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }} className='cart-subtotal'>
+                                            <span>Subtotal</span>
+                                            <span>${cartSubtotal.toFixed(2)}</span>
+                                        </Box>
+                                        <Divider />
+                                        <strong>
+                                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }} className='cart-total'>
+                                                <span>Total</span>
+                                                <span>${cartTotal.toFixed(2)}</span>
+                                            </Box>
+                                        </strong>
+                                    </Box>
                                 </div>
                             </Box>
-                        </> : <></>}
+                        </> :
+                        activeStep == 2 ?
+                            <>
+                                <Box className='order-heading' sx={{ textAlign: 'center',margin:'5vh 0' }}>
+                                    <h3 className='order-heading-thanks'>Thank you!</h3>
+                                    <div>
+                                        <h2>Your Order has been recieved</h2>
+                                    </div>
+                                </Box>
+                                <Box sx={{ display: 'flex', gap: '1vw', height: '10vw', justifyContent: 'center', margin: '5vh 0' }} >
+                                    {cartItems.length > 0 ?
+                                        cartItems.map(item =>
+                                            <StyledBadge badgeContent={item.quantity ?? 1}>
+                                                <div className='order-items'>
+                                                    <img src={item.imageUrl} className='order-images'></img>
+                                                </div>
+                                            </StyledBadge>
+                                        )
+                                        :
+                                        <></>}
+                                </Box>
+                                <Box sx={{display:'flex',gap:'1vw', justifyContent:'center'}}>
+                                            <div className="orderDetails-left">
+                                                <div className='order-details-heading'>Order code:</div>
+                                                <div className='order-details-heading'>Date:</div>
+                                                <div className='order-details-heading'>Total:</div>
+                                                <div className='order-details-heading'>Payment method:</div>
+                                            </div>
+                                            <div className="orderDetails-right">
+                                                <div className='order-details-info'>#{Number(Math.random()*10000).toFixed(0)}</div>
+                                                <div className='order-details-info'>{new Date(Date.now()).toDateString()}</div>
+                                                <div className='order-details-info'>${cartTotal}</div>
+                                                <div className='order-details-info'>Paypal</div>
+                                            </div>
+                                </Box>
+                            </>
+                            :
+                            <></>}
             </ThemeProvider>
         </div>
     );

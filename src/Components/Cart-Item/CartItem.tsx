@@ -33,6 +33,7 @@ const dispatch = useDispatch<any>();
                 </div>
             </div>
         </Box>
+        <br />
         <Divider className='divider'></Divider>
         </div>
     )

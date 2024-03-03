@@ -1,5 +1,16 @@
 .cart-summary{
     width: 35%;
+    height: 70%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 2vh 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.order-summary{
+    width: 35%;
+    height: 70%;
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     padding: 2vh 1vw;
@@ -20,7 +31,7 @@
 .shipping-card-container{
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 5px;
-    padding: 2vh 4vw;
+    padding: 2vh 1vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -48,5 +59,24 @@
     flex-direction: column;
     justify-content: space-around;
     gap: 4vh;
-    margin: 4vh 0;
+    margin-bottom: 4vh;
+}
+.order-items{
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.order-images{
+    height: 100%;
+}
+.order-heading-thanks{
+    color: rgb(75, 75, 75);
+
+}
+.order-details-heading{
+    font-weight: 600;
+    color: rgb(75, 75, 75);
+}
+.order-details-info{
+    font-weight: 700;
 }

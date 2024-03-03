@@ -30,7 +30,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
       localStorage.removeItem('JWTToken');
       navigate('/signup');
   }
-let totalCartItems = useSelector((state:any)=>state?.cart?.length);
+let totalCartItems = useSelector((state:any)=>state?.user?.cart?.length);
 let [isShowNav, setShowNav] = React.useState(true);
 let lastScrollTop =0;
 const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
