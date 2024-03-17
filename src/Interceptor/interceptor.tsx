@@ -18,11 +18,14 @@ axiosInstance.interceptors.response.use((response:any)=>{
 
     return response
 },(error:AxiosError)=>{
+    debugger;
     if(error.response?.status == 401){
         if(localStorage.getItem("JWTToken")){
             localStorage.removeItem("JWTToken")
         }
-        window.location.href = '/signup';
+        if (window.location.pathname !== '/signup') {
+            window.location.href = '/signup';
+        }
     }
     return Promise.reject(error);
 })
