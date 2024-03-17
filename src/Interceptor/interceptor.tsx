@@ -19,6 +19,9 @@ axiosInstance.interceptors.response.use((response:any)=>{
     return response
 },(error:AxiosError)=>{
     if(error.response?.status == 401){
+        if(localStorage.getItem("JWTToken")){
+            localStorage.removeItem("JWTToken")
+        }
         window.location.href = '/signup';
     }
     return Promise.reject(error);

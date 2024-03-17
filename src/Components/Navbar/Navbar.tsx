@@ -7,7 +7,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { NavLink, useNavigate, useNavigation } from 'react-router-dom';
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
-import { useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Avatar, Divider, ListItemIcon, Menu, MenuItem } from '@mui/material';
 import { Login, Logout, PersonAdd, Settings } from '@mui/icons-material';
 import { red } from '@mui/material/colors';
@@ -16,138 +16,132 @@ import { red } from '@mui/material/colors';
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
-    '& .MuiBadge-badge': {
-      top: 5,
-      backgroundColor:'black',
-      color:'white',
-      border: `2px solid ${theme.palette.background.paper}`,
-      padding: '0 4px',
-    },
-  }));
-  export default function Navbar(props){
-    const navigate = useNavigate();
-    const logout = ()=>{
-      localStorage.removeItem('JWTToken');
-      navigate('/signup');
+  '& .MuiBadge-badge': {
+    top: 5,
+    backgroundColor: 'black',
+    color: 'white',
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
+export default function Navbar(props) {
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem('JWTToken');
+    navigate('/signup');
   }
-let totalCartItems = useSelector((state:any)=>state?.user?.cart?.length);
-let [isShowNav, setShowNav] = React.useState(true);
-let lastScrollTop =0;
-const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-const open = Boolean(anchorEl);
-const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-  setAnchorEl(event.currentTarget);
-};
-const handleClose = () => {
-  setAnchorEl(null);
-};
-React.useEffect(()=>{
-      const handleScroll = () => {
-        const isScrollingDown =window.scrollY>lastScrollTop;
-        lastScrollTop = window.scrollY;
-        setShowNav(!isScrollingDown);
+  let totalCartItems = useSelector((state: any) => state?.user?.cart?.length);
+  let [isShowNav, setShowNav] = React.useState(true);
+  let lastScrollTop = 0;
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleMyAccount = () => {
+    navigate('myAccount');
+  };
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const isScrollingDown = window.scrollY > lastScrollTop;
+      lastScrollTop = window.scrollY;
+      setShowNav(!isScrollingDown);
     };
-    const handleMouseMove = (event)=>{
-        if(event.clientY<25){
-            setShowNav(true);
-        }
-    };    
-    window.addEventListener('mousemove',handleMouseMove);
+    const handleMouseMove = (event) => {
+      if (event.clientY < 25) {
+        setShowNav(true);
+      }
+    };
+    window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('scroll', handleScroll);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
     };
-},[]);
-    return(
-        <div className='container'>
+  }, []);
+  return (
+    <div className='container'>
 
-          <div className={`ecnavbar container ${isShowNav?'':'heightAdj'}`}>
-            <div className='eclogo'>
-              <h2>3legant</h2>
-            </div>
-            <div className='navButtons'>
-                <NavLink to='/' className='navBtn' >HOME</NavLink>
-                <NavLink to='/shop' className='navBtn' >SHOP</NavLink>
-                {/* <NavLink to='/products' className='navBtn'  >PRODUCT</NavLink> */}
-                <NavLink to='/contact' className='navBtn' >CONTACT US</NavLink>
-            </div>
-            <div className='navIcons'>
-                <IconButton >
-                    <SearchOutlinedIcon/>
-                </IconButton>
-                <IconButton onClick={handleClick} size="small">
-                    <AccountCircleOutlinedIcon/>
-                </IconButton>
-                <Menu
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                onClick={handleClose}
-                PaperProps={{
-                elevation: 0,
-                sx: {
-                    overflow: 'visible',
-                    filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                    mt: 1.5,
-                    '& .MuiAvatar-root': {
-                    width: 32,
-                    height: 32,
-                    ml: -0.5,
-                    mr: 1,
-                    },
-                    '&::before': {
-                    content: '""',
-                    display: 'block',
-                    position: 'absolute',
-                    top: 0,
-                    right: 14,
-                    width: 10,
-                    height: 10,
-                    bgcolor: 'background.paper',
-                    transform: 'translateY(-50%) rotate(45deg)',
-                    zIndex: 0,
-                    },
-                },
-                }}
-                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> My account
-        </MenuItem>
-        <Divider />
-        
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-        <MenuItem href='/signup' onClick={logout}>
-          {/* <NavLink to='/signup' className='navBtn'> */}
-          <ListItemIcon>
-          {localStorage.getItem('JWTToken')?<Logout fontSize="small" />:<Login fontSize="small" />}
-          </ListItemIcon>
-          {localStorage.getItem('JWTToken')?'Logout':'Sign In'}
-            {/* </NavLink> */}
-        </MenuItem>
-      </Menu>
-                <StyledBadge badgeContent={totalCartItems}>
-                    <IconButton onClick={props.toggleDrawer} >
-                        <ShoppingBagOutlined/>
-                    </IconButton>
-                </StyledBadge>
-            </div>
-          </div>
-           
+      <div className={`ecnavbar container ${isShowNav ? '' : 'heightAdj'}`}>
+        <div className='eclogo'>
+          <h2>3legant</h2>
         </div>
+        <div className='navButtons'>
+          <NavLink to='/' className='navBtn' >HOME</NavLink>
+          <NavLink to='/shop' className='navBtn' >SHOP</NavLink>
+          {/* <NavLink to='/products' className='navBtn'  >PRODUCT</NavLink> */}
+          <NavLink to='/contact' className='navBtn' >CONTACT US</NavLink>
+        </div>
+        <div className='navIcons'>
+          <IconButton >
+            <SearchOutlinedIcon />
+          </IconButton>
+          <IconButton onClick={handleClick} size="small">
+            <AccountCircleOutlinedIcon />
+          </IconButton>
+          <Menu
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            onClick={handleClose}
+            PaperProps={{
+              elevation: 0,
+              sx: {
+                overflow: 'visible',
+                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                mt: 1.5,
+                '& .MuiAvatar-root': {
+                  width: 32,
+                  height: 32,
+                  ml: -0.5,
+                  mr: 1,
+                },
+                '&::before': {
+                  content: '""',
+                  display: 'block',
+                  position: 'absolute',
+                  top: 0,
+                  right: 14,
+                  width: 10,
+                  height: 10,
+                  bgcolor: 'background.paper',
+                  transform: 'translateY(-50%) rotate(45deg)',
+                  zIndex: 0,
+                },
+              },
+            }}
+            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
+          
+            <MenuItem onClick={handleMyAccount}>
+              <Avatar /> My account
+            </MenuItem>
+            <Divider />
+
+        
+            <MenuItem href='/signup' onClick={logout}>
+              <ListItemIcon>
+                {localStorage.getItem('JWTToken') ? <Logout fontSize="small" /> : <Login fontSize="small" />}
+              </ListItemIcon>
+              {localStorage.getItem('JWTToken') ? 'Logout' : 'Sign In'}
+            </MenuItem>
+          </Menu>
+          <StyledBadge badgeContent={totalCartItems}>
+            <IconButton onClick={props.toggleDrawer} >
+              <ShoppingBagOutlined />
+            </IconButton>
+          </StyledBadge>
+        </div>
+      </div>
+
+    </div>
 
 
-    
-    
-    )
+
+
+  )
 };

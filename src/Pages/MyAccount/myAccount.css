@@ -1,0 +1,55 @@
+.account-info{
+    display: flex;
+    flex-direction: column;
+    gap: 4vh;
+}
+.account-left{
+    width: 30%;
+    padding: 0 2vw;
+}
+.account-right{
+    width: 70%;
+}
+.account-nav{
+    background-color: #F3F5F7;
+    width: 100%;
+    border-radius: 10px;
+    padding: 5vh 1vw;
+}
+.profile-img{
+    width: 100px;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 50%;
+    height: 100px;
+}
+.account-tabs{
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 15px;
+    opacity: 0.7;
+    height: 40px;
+}
+
+.account-tabs::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    /* height: 1px; */
+    /* background-color: black;  */
+    border: 0px solid black;
+    transition: width 0.3s ease; 
+}
+
+.account-tabs.selected-tab::after {
+    border: 1px solid black;
+    width: 100%; 
+    opacity: 1 !important;
+}
+.account-tabs.selected-tab {
+    width: 100%; 
+    opacity: 1 !important;
+}

@@ -19,13 +19,13 @@ import { Toaster } from 'react-hot-toast';
 import Cart from './Pages/Cart/Cart';
 import { loadCartAsync } from './Redux/reducers';
 import { jwtDecode } from 'jwt-decode';
+import MyAccount from './Pages/MyAccount/myAccount';
 const Layout = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch<any>();
   useEffect(() => {
     try{
-
       const decodedToken:any = jwtDecode(localStorage.getItem('JWTToken')??'');
       dispatch(loadCartAsync(decodedToken.UserId))
       if (!localStorage.getItem('JWTToken')) {
@@ -55,9 +55,10 @@ const Layout = () => {
                   <Route path='products' element={<Products />} />
                   <Route path='shop' element={<Shop />} />
                   <Route path='contact' element={<Contact />} />
+                  <Route path='myAccount' element={<MyAccount />} />
                 </Routes>
               </div>
-              <Newsletter />
+              {location.pathname != '/myAccount'?<><Newsletter/></>:<></>}
               <Footer />
             </>
           }
