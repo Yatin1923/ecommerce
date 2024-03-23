@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './myAccount.css'
 import Box from '@mui/material/Box';
 import { Divider, TextField, ThemeProvider, createTheme } from '@mui/material';
@@ -17,17 +17,8 @@ export default function MyAccount() {
             }
         }
     })
-   let decodedToken:IToken = jwtDecode(localStorage.getItem('JWTToken')??'');
-    useEffect(() =>{
-        try{
-            let token :string = localStorage.getItem('JWTToken')??'';
-            this.decodedToken = jwtDecode(token);
-            console.log(decodedToken);
-        }
-        catch(err){
-            console.error(err);
-        }
-    })
+    let token = localStorage.getItem('JWTToken')??''
+    let decodedToken:IToken = jwtDecode(token);
     const [selectedTab, setSelectedTab] = useState(0); // State to track selected tab index
     const accountTabClick = (index: number) => {
         setSelectedTab(index); // Update selected tab index

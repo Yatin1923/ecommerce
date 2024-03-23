@@ -38,11 +38,7 @@ export default function SignUp() {
     sethaveAccount(!haveAccount);
   };
   const dispatch = useDispatch<any>();
-  React.useEffect(() => {
-    // if (localStorage.getItem("JWTToken")) {
-    //   navigate("/");
-    // }
-  }, []);
+
   const form = useForm<FormValues>({
     defaultValues: {
       email: "",
