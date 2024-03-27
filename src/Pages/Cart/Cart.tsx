@@ -6,7 +6,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import { Badge, Divider, FormControlLabel, IconButton, InputBase, Paper, Radio, RadioGroup, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, ThemeProvider, createTheme, styled } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromCartAsync } from '../../Redux/reducers'
+import { emptyCartAsync, removeFromCartAsync } from '../../Redux/reducers'
 import CloseIcon from '@mui/icons-material/Close';
 import DiscountIcon from '@mui/icons-material/Discount';
 import './Cart.css'
@@ -17,6 +17,8 @@ import { jwtDecode } from 'jwt-decode';
 import { useForm } from "react-hook-form";
 import axios from "../../Interceptor/interceptor";
 import _ from 'lodash';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 const steps = ['Shopping cart', 'Checkout details', 'Order complete'];
 interface IToken {
     Cart: string;
@@ -80,21 +82,24 @@ export default function Cart() {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         window.scrollTo({ top: 0, behavior: 'instant' })
     };
+    const[orderId,setOrderId] = React.useState<number>(0);
     const onSubmit = (data:FormValues)=>{
         let itemIds = cartItems.map(item=>item.id).join(',')
            
             axios.post('Order',{
                 userId:decodedToken.UserId,
                 date:new Date(Date.now()),
-                total:total.toString(),
+                total:cartTotal.toString(),
                 paymentMethod:'card',
                 itemId:itemIds
                 
             }).then((res)=>{
+                console.log(res.data);
+                setOrderId(res.data);
                 handleNext();
                 setOrderedItems(cartItems);
                 cartItems.forEach((item:any)=>{
-                    dispatch(removeFromCartAsync(item))
+                    dispatch(emptyCartAsync(item))
                 })
                 console.log("orderItems",orderedItems);
             },(error)=>{
@@ -136,7 +141,11 @@ export default function Cart() {
     const [cartInitialTotal, setCartInitialTotal] = React.useState(0);
     let total: number = 0
     let subtotal: number = 0
+    const navigate = useNavigate();
     React.useEffect(() => {
+        if(cartItems.length<=0 && activeStep != 2){
+            navigate('/Shop');
+        }
         cartItems.forEach(item => {
             total += (item.price * item.quantity)
             subtotal += (item.price)
@@ -146,7 +155,7 @@ export default function Cart() {
         setCartInitialSubtotal(subtotal)
         setCartInitialTotal(total)
             window.scrollTo({ top: 0, behavior: 'instant' });
-    }, [cartItems])
+    }, [])
     const dispatch = useDispatch<any>();
 
     return (
@@ -386,7 +395,7 @@ export default function Cart() {
                                         <div className='order-details-heading'>Payment method:</div>
                                     </div>
                                     <div className="orderDetails-right">
-                                        <div className='order-details-info'>#{Number(Math.random() * 10000).toFixed(0)}</div>
+                                        <div className='order-details-info'>#{orderId}</div>
                                         <div className='order-details-info'>{new Date(Date.now()).toDateString()}</div>
                                         <div className='order-details-info'>${cartTotal}</div>
                                         <div className='order-details-info'>Paypal</div>

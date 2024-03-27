@@ -58,6 +58,19 @@ const removeFromCartAsync = createAsyncThunk('cart/removeFromCart', async (paylo
     throw error;
   }
 })
+const emptyCartAsync = createAsyncThunk('cart/removeFromCart', async (payload: any) => {
+  try {
+    const res = await axios.delete(`Cart?ItemId=${payload.id}&UserId=${_userId}`).catch(error => {
+      return error
+    })
+    return res.status == 200 ? payload : null;
+
+  } catch (error) {
+    console.error('Error removing product from cart', error);
+    toast.error('Error removing product from cart', error)
+    throw error;
+  }
+})
 type User = {
   id:Number,
   name:string,
@@ -91,5 +104,5 @@ const userState = createSlice({
     })
   }
 })
-export { addToCartAsync, removeFromCartAsync, loadCartAsync }
+export { addToCartAsync, removeFromCartAsync, loadCartAsync,emptyCartAsync }
 export default userState.reducer;
